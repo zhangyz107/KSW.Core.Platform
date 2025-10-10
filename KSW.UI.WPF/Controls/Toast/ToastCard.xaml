@@ -59,15 +59,19 @@
         <Style x:Key="OutlineBorderStyle" TargetType="Border" >
             <Style.Triggers>
                 <DataTrigger Binding="{Binding NotificationType}" Value="{x:Static enums:NotificationType.Information}">
+                    <Setter Property="Background" Value="{DynamicResource KSW.Toast.Background.Information}"></Setter>
                     <Setter Property="BorderBrush" Value="{DynamicResource  KSW.Toast.Brush.Information}"></Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding NotificationType}" Value="{x:Static enums:NotificationType.Success}">
+                    <Setter Property="Background" Value="{DynamicResource KSW.Toast.Background.Success}"></Setter>
                     <Setter Property="BorderBrush" Value="{DynamicResource KSW.Toast.Brush.Success}"></Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding NotificationType}" Value="{x:Static enums:NotificationType.Warning}">
+                    <Setter Property="Background" Value="{DynamicResource KSW.Toast.Background.Warning}"></Setter>
                     <Setter Property="BorderBrush" Value="{DynamicResource KSW.Toast.Brush.Warning}"></Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding NotificationType}" Value="{x:Static enums:NotificationType.Error}">
+                    <Setter Property="Background" Value="{DynamicResource KSW.Toast.Background.Error}"></Setter>
                     <Setter Property="BorderBrush" Value="{DynamicResource KSW.Toast.Brush.Error}"></Setter>
                 </DataTrigger>
             </Style.Triggers>
@@ -78,7 +82,6 @@
         <ControlTemplate TargetType="{x:Type local:ToastCard}">
             <Border
                 x:Name="PART_RootBorder"
-                Background="{DynamicResource MaterialDesign.Brush.Background}"
                 BorderThickness="2"
                 CornerRadius="6"
                 Padding="12 8"

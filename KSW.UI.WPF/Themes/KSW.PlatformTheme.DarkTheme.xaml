@@ -4,4 +4,9 @@
     <SolidColorBrush x:Key="KSW.Toast.Brush.Success" Color="#5dc264"></SolidColorBrush>
     <SolidColorBrush x:Key="KSW.Toast.Brush.Warning" Color="#ffae43"></SolidColorBrush>
     <SolidColorBrush x:Key="KSW.Toast.Brush.Error" Color="#fc725a"></SolidColorBrush>
+
+    <SolidColorBrush x:Key="KSW.Toast.Background.Information" Color="#233448"></SolidColorBrush>
+    <SolidColorBrush x:Key="KSW.Toast.Background.Success" Color="#253929"></SolidColorBrush>
+    <SolidColorBrush x:Key="KSW.Toast.Background.Warning" Color="#453522"></SolidColorBrush>
+    <SolidColorBrush x:Key="KSW.Toast.Background.Error" Color="#442927"></SolidColorBrush>
 </ResourceDictionary>
