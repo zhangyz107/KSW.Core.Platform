@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "rCrW5OrO+Jc=",
+  "success": true,
+  "projectFilePath": "D:\\Src\\KSW.ATE01.Platform\\src\\src-platform\\KSW.Aop.AspectCore\\KSW.Aop.AspectCore.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zhang\\.nuget\\packages\\aspectcore.abstractions\\2.4.0\\aspectcore.abstractions.2.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
