@@ -135,4 +135,10 @@
   <data name="InvalidPhone" xml:space="preserve">
     <value>Invalid phone number.</value>
   </data>
+  <data name="CannotExceedCharacters" xml:space="preserve">
+    <value>Cannot exceed {0} characters.</value>
+  </data>
+  <data name="CannotBeLessThanCharacters" xml:space="preserve">
+    <value>Cannot be less than {0} characters.</value>
+  </data>
 </root>

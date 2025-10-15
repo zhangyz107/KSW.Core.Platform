@@ -44,6 +44,18 @@ namespace KSW.Dtos
                     if (value == null || string.IsNullOrEmpty(value.ToString()))
                         return pi?.GetCustomAttribute<RequiredAttribute>().ErrorMessage ?? string.Format(L["CanNotBeEmpty"]);
                 }
+                else if (pi.IsDefined(typeof(MaxLengthAttribute), true))
+                {
+                    var maximun = pi.GetCustomAttribute<MaxLengthAttribute>().Length;
+                    if (value is string stringValue && stringValue.Length > maximun)
+                        return pi.GetCustomAttribute<MaxLengthAttribute>().ErrorMessage ?? string.Format(L["CannotExceedCharacters"],  maximun);
+                }
+                else if (pi.IsDefined(typeof(MinLengthAttribute), true))
+                {
+                    var minimun = pi.GetCustomAttribute<MinLengthAttribute>().Length;
+                    if (value is string stringValue && stringValue.Length < minimun)
+                        return pi.GetCustomAttribute<MinLengthAttribute>().ErrorMessage ?? string.Format(L["CannotBeLessThanCharacters"], minimun);
+                }
                 else if (pi.IsDefined(typeof(RangeAttribute), true))
                 {
                     if (value is int intValue)

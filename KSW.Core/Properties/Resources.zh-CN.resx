@@ -135,4 +135,10 @@
   <data name="InvalidPhone" xml:space="preserve">
     <value>无效电话号码。</value>
   </data>
+  <data name="CannotExceedCharacters" xml:space="preserve">
+    <value>不能超过{0}个字符。</value>
+  </data>
+  <data name="CannotBeLessThanCharacters" xml:space="preserve">
+    <value>不能少于{0}个字符。</value>
+  </data>
 </root>

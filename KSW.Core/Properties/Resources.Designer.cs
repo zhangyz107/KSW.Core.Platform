@@ -72,6 +72,24 @@ namespace KSW.Properties {
         /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
+        internal static string CannotBeLessThanCharacters {
+            get {
+                return ResourceManager.GetString("CannotBeLessThanCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string CannotExceedCharacters {
+            get {
+                return ResourceManager.GetString("CannotExceedCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
         internal static string InvalidEmailAddress {
             get {
                 return ResourceManager.GetString("InvalidEmailAddress", resourceCulture);
