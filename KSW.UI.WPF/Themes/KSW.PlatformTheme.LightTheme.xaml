@@ -9,4 +9,6 @@
     <SolidColorBrush x:Key="KSW.Toast.Background.Success" Color="#ecf7ec"></SolidColorBrush>
     <SolidColorBrush x:Key="KSW.Toast.Background.Warning" Color="#fff8ea"></SolidColorBrush>
     <SolidColorBrush x:Key="KSW.Toast.Background.Error" Color="#fef2ed"></SolidColorBrush>
+
+    <SolidColorBrush x:Key="KSW.Border.Background" Color="#ffffff"></SolidColorBrush>
 </ResourceDictionary>

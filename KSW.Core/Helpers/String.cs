@@ -3,7 +3,12 @@
 /// <summary>
 /// 字符串操作
 /// </summary>
-public static class String {
+public static class String
+{
+    private const string AdditionalPhoneNumberCharacters = "-.()";
+    private const string ExtensionAbbreviationExtDot = "ext.";
+    private const string ExtensionAbbreviationExt = "ext";
+    private const string ExtensionAbbreviationX = "x";
 
     #region Join(将集合连接为带分隔符的字符串)
 
@@ -14,13 +19,14 @@ public static class String {
     /// <param name="values">值</param>
     /// <param name="quotes">引号，默认不带引号，范例：单引号 "'"</param>
     /// <param name="separator">分隔符，默认使用逗号分隔</param>
-    public static string Join<T>( IEnumerable<T> values, string quotes = "", string separator = "," ) {
-        if ( values == null )
+    public static string Join<T>(IEnumerable<T> values, string quotes = "", string separator = ",")
+    {
+        if (values == null)
             return string.Empty;
         var result = new StringBuilder();
-        foreach ( var each in values )
-            result.AppendFormat( "{0}{1}{0}{2}", quotes, each, separator );
-        return result.ToString().RemoveEnd( separator );
+        foreach (var each in values)
+            result.AppendFormat("{0}{1}{0}{2}", quotes, each, separator);
+        return result.ToString().RemoveEnd(separator);
     }
 
     #endregion
@@ -31,13 +37,14 @@ public static class String {
     /// 首字母小写
     /// </summary>
     /// <param name="value">值</param>
-    public static string FirstLowerCase( string value ) {
-        if ( string.IsNullOrWhiteSpace( value ) )
+    public static string FirstLowerCase(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
             return string.Empty;
-        var result = Rune.DecodeFromUtf16( value, out var rune, out var charsConsumed );
-        if ( result != OperationStatus.Done || Rune.IsLower( rune ) )
+        var result = Rune.DecodeFromUtf16(value, out var rune, out var charsConsumed);
+        if (result != OperationStatus.Done || Rune.IsLower(rune))
             return value;
-        return Rune.ToLowerInvariant( rune ) + value[charsConsumed..];
+        return Rune.ToLowerInvariant(rune) + value[charsConsumed..];
     }
 
     #endregion
@@ -48,13 +55,14 @@ public static class String {
     /// 首字母大写
     /// </summary>
     /// <param name="value">值</param>
-    public static string FirstUpperCase( string value ) {
-        if ( string.IsNullOrWhiteSpace( value ) )
+    public static string FirstUpperCase(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
             return string.Empty;
-        var result = Rune.DecodeFromUtf16( value, out var rune, out var charsConsumed );
-        if ( result != OperationStatus.Done || Rune.IsUpper( rune ) )
+        var result = Rune.DecodeFromUtf16(value, out var rune, out var charsConsumed);
+        if (result != OperationStatus.Done || Rune.IsUpper(rune))
             return value;
-        return Rune.ToUpperInvariant( rune ) + value[charsConsumed..];
+        return Rune.ToUpperInvariant(rune) + value[charsConsumed..];
     }
 
     #endregion
@@ -67,15 +75,16 @@ public static class String {
     /// <param name="value">值</param>
     /// <param name="start">要移除的值</param>
     /// <param name="ignoreCase">是否忽略大小写,默认值: true</param>
-    public static string RemoveStart( string value, string start, bool ignoreCase = true ) {
-        if ( string.IsNullOrWhiteSpace( value ) )
+    public static string RemoveStart(string value, string start, bool ignoreCase = true)
+    {
+        if (string.IsNullOrWhiteSpace(value))
             return string.Empty;
-        if ( string.IsNullOrEmpty( start ) )
+        if (string.IsNullOrEmpty(start))
             return value;
         var options = ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
-        if ( value.StartsWith( start, options ) == false )
+        if (value.StartsWith(start, options) == false)
             return value;
-        return value.Substring( start.Length, value.Length - start.Length );
+        return value.Substring(start.Length, value.Length - start.Length);
     }
 
     /// <summary>
@@ -83,19 +92,21 @@ public static class String {
     /// </summary>
     /// <param name="value">值</param>
     /// <param name="start">要移除的值</param>
-    public static StringBuilder RemoveStart( StringBuilder value, string start ) {
-        if ( value == null || value.Length == 0 )
+    public static StringBuilder RemoveStart(StringBuilder value, string start)
+    {
+        if (value == null || value.Length == 0)
             return null;
-        if ( string.IsNullOrEmpty( start ) )
+        if (string.IsNullOrEmpty(start))
             return value;
-        if ( start.Length > value.Length )
+        if (start.Length > value.Length)
             return value;
         var chars = start.ToCharArray();
-        for ( int i = 0; i < chars.Length; i++ ) {
-            if ( value[i] != chars[i] )
+        for (int i = 0; i < chars.Length; i++)
+        {
+            if (value[i] != chars[i])
                 return value;
         }
-        return value.Remove( 0, start.Length );
+        return value.Remove(0, start.Length);
     }
 
     #endregion
@@ -108,15 +119,16 @@ public static class String {
     /// <param name="value">值</param>
     /// <param name="end">要移除的值</param>
     /// <param name="ignoreCase">是否忽略大小写,默认值: true</param>
-    public static string RemoveEnd( string value, string end,bool ignoreCase = true ) {
-        if ( string.IsNullOrWhiteSpace( value ) )
+    public static string RemoveEnd(string value, string end, bool ignoreCase = true)
+    {
+        if (string.IsNullOrWhiteSpace(value))
             return string.Empty;
-        if ( string.IsNullOrEmpty( end ) )
+        if (string.IsNullOrEmpty(end))
             return value;
         var options = ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
-        if ( value.EndsWith( end, options ) == false )
+        if (value.EndsWith(end, options) == false)
             return value;
-        return value.Substring( 0, value.LastIndexOf( end, options ) );
+        return value.Substring(0, value.LastIndexOf(end, options));
     }
 
     /// <summary>
@@ -124,20 +136,22 @@ public static class String {
     /// </summary>
     /// <param name="value">值</param>
     /// <param name="end">要移除的值</param>
-    public static StringBuilder RemoveEnd( StringBuilder value, string end ) {
-        if ( value == null || value.Length == 0 )
+    public static StringBuilder RemoveEnd(StringBuilder value, string end)
+    {
+        if (value == null || value.Length == 0)
             return null;
-        if ( string.IsNullOrEmpty( end ) )
+        if (string.IsNullOrEmpty(end))
             return value;
-        if ( end.Length > value.Length )
+        if (end.Length > value.Length)
             return value;
         var chars = end.ToCharArray();
-        for ( int i = chars.Length - 1; i >= 0; i-- ) {
-            var j = value.Length - ( chars.Length - i );
-            if ( value[j] != chars[i] )
+        for (int i = chars.Length - 1; i >= 0; i--)
+        {
+            var j = value.Length - (chars.Length - i);
+            if (value[j] != chars[i])
                 return value;
         }
-        return value.Remove( value.Length - end.Length, end.Length );
+        return value.Remove(value.Length - end.Length, end.Length);
     }
 
     #endregion
@@ -148,78 +162,81 @@ public static class String {
     /// 获取汉字的拼音简码，即首字母缩写,范例：中国,返回zg
     /// </summary>
     /// <param name="chineseText">汉字文本,范例： 中国</param>
-    public static string PinYin( string chineseText ) {
-        if ( chineseText.IsEmpty() )
+    public static string PinYin(string chineseText)
+    {
+        if (chineseText.IsEmpty())
             return string.Empty;
         var result = new StringBuilder();
-        foreach ( char text in chineseText )
-            result.Append( ResolvePinYin( text ) );
+        foreach (char text in chineseText)
+            result.Append(ResolvePinYin(text));
         return result.ToString().ToLower();
     }
 
     /// <summary>
     /// 解析单个汉字的拼音简码
     /// </summary>
-    private static string ResolvePinYin( char text ) {
-        byte[] charBytes = Encoding.UTF8.GetBytes( text.ToString() );
-        if ( charBytes[0] <= 127 )
+    private static string ResolvePinYin(char text)
+    {
+        byte[] charBytes = Encoding.UTF8.GetBytes(text.ToString());
+        if (charBytes[0] <= 127)
             return text.ToString();
-        var unicode = (ushort)( charBytes[0] * 256 + charBytes[1] );
-        string pinYin = ResolveByCode( unicode );
-        if ( pinYin.IsEmpty() == false )
+        var unicode = (ushort)(charBytes[0] * 256 + charBytes[1]);
+        string pinYin = ResolveByCode(unicode);
+        if (pinYin.IsEmpty() == false)
             return pinYin;
-        return ResolveByConst( text.ToString() );
+        return ResolveByConst(text.ToString());
     }
 
     /// <summary>
     /// 使用字符编码方式获取拼音简码
     /// </summary>
-    private static string ResolveByCode( ushort unicode ) {
-        if ( unicode >= '\uB0A1' && unicode <= '\uB0C4' )
+    private static string ResolveByCode(ushort unicode)
+    {
+        if (unicode >= '\uB0A1' && unicode <= '\uB0C4')
             return "A";
-        if ( unicode >= '\uB0C5' && unicode <= '\uB2C0' && unicode != 45464 )
+        if (unicode >= '\uB0C5' && unicode <= '\uB2C0' && unicode != 45464)
             return "B";
-        if ( unicode >= '\uB2C1' && unicode <= '\uB4ED' )
+        if (unicode >= '\uB2C1' && unicode <= '\uB4ED')
             return "C";
-        if ( unicode >= '\uB4EE' && unicode <= '\uB6E9' )
+        if (unicode >= '\uB4EE' && unicode <= '\uB6E9')
             return "D";
-        if ( unicode >= '\uB6EA' && unicode <= '\uB7A1' )
+        if (unicode >= '\uB6EA' && unicode <= '\uB7A1')
             return "E";
-        if ( unicode >= '\uB7A2' && unicode <= '\uB8C0' )
+        if (unicode >= '\uB7A2' && unicode <= '\uB8C0')
             return "F";
-        if ( unicode >= '\uB8C1' && unicode <= '\uB9FD' )
+        if (unicode >= '\uB8C1' && unicode <= '\uB9FD')
             return "G";
-        if ( unicode >= '\uB9FE' && unicode <= '\uBBF6' )
+        if (unicode >= '\uB9FE' && unicode <= '\uBBF6')
             return "H";
-        if ( unicode >= '\uBBF7' && unicode <= '\uBFA5' )
+        if (unicode >= '\uBBF7' && unicode <= '\uBFA5')
             return "J";
-        if ( unicode >= '\uBFA6' && unicode <= '\uC0AB' )
+        if (unicode >= '\uBFA6' && unicode <= '\uC0AB')
             return "K";
-        if ( unicode >= '\uC0AC' && unicode <= '\uC2E7' )
+        if (unicode >= '\uC0AC' && unicode <= '\uC2E7')
             return "L";
-        if ( unicode >= '\uC2E8' && unicode <= '\uC4C2' )
+        if (unicode >= '\uC2E8' && unicode <= '\uC4C2')
             return "M";
-        if ( unicode >= '\uC4C3' && unicode <= '\uC5B5' )
+        if (unicode >= '\uC4C3' && unicode <= '\uC5B5')
             return "N";
-        if ( unicode >= '\uC5B6' && unicode <= '\uC5BD' )
+        if (unicode >= '\uC5B6' && unicode <= '\uC5BD')
             return "O";
-        if ( unicode >= '\uC5BE' && unicode <= '\uC6D9' )
+        if (unicode >= '\uC5BE' && unicode <= '\uC6D9')
             return "P";
-        if ( unicode >= '\uC6DA' && unicode <= '\uC8BA' )
+        if (unicode >= '\uC6DA' && unicode <= '\uC8BA')
             return "Q";
-        if ( unicode >= '\uC8BB' && unicode <= '\uC8F5' )
+        if (unicode >= '\uC8BB' && unicode <= '\uC8F5')
             return "R";
-        if ( unicode >= '\uC8F6' && unicode <= '\uCBF9' )
+        if (unicode >= '\uC8F6' && unicode <= '\uCBF9')
             return "S";
-        if ( unicode >= '\uCBFA' && unicode <= '\uCDD9' )
+        if (unicode >= '\uCBFA' && unicode <= '\uCDD9')
             return "T";
-        if ( unicode >= '\uCDDA' && unicode <= '\uCEF3' )
+        if (unicode >= '\uCDDA' && unicode <= '\uCEF3')
             return "W";
-        if ( unicode >= '\uCEF4' && unicode <= '\uD188' )
+        if (unicode >= '\uCEF4' && unicode <= '\uD188')
             return "X";
-        if ( unicode >= '\uD1B9' && unicode <= '\uD4D0' )
+        if (unicode >= '\uD1B9' && unicode <= '\uD4D0')
             return "Y";
-        if ( unicode >= '\uD4D1' && unicode <= '\uD7F9' )
+        if (unicode >= '\uD4D1' && unicode <= '\uD7F9')
             return "Z";
         return string.Empty;
     }
@@ -227,11 +244,12 @@ public static class String {
     /// <summary>
     /// 通过拼音简码常量获取
     /// </summary>
-    private static string ResolveByConst( string text ) {
-        int index = Const.ChinesePinYin.IndexOf( text, StringComparison.Ordinal );
-        if ( index < 0 )
+    private static string ResolveByConst(string text)
+    {
+        int index = Const.ChinesePinYin.IndexOf(text, StringComparison.Ordinal);
+        if (index < 0)
             return string.Empty;
-        return Const.ChinesePinYin.Substring( index + 1, 1 );
+        return Const.ChinesePinYin.Substring(index + 1, 1);
     }
 
     #endregion
@@ -243,54 +261,62 @@ public static class String {
     /// </summary>
     /// <param name="value">原始值,范例: Hello,World</param>
     /// <param name="format">字符串格式,范例: 原始值为Hello,World,格式为Hello,{value} ,则value变量的值为World</param>
-    public static IDictionary<string, string> Extract( string value, string format ) {
+    public static IDictionary<string, string> Extract(string value, string format)
+    {
         var result = new Dictionary<string, string>();
-        if ( value.IsEmpty() )
+        if (value.IsEmpty())
             return result;
-        if ( format.IsEmpty() )
+        if (format.IsEmpty())
             return result;
-        if ( format.Contains( "{", StringComparison.Ordinal ) == false )
+        if (format.Contains("{", StringComparison.Ordinal) == false)
             return result;
-        if ( format.Contains( "}", StringComparison.Ordinal ) == false )
+        if (format.Contains("}", StringComparison.Ordinal) == false)
             return result;
-        var formatItems = SplitFormat( format.SafeString() );
-        return ExtractValue( value.SafeString(), formatItems );
+        var formatItems = SplitFormat(format.SafeString());
+        return ExtractValue(value.SafeString(), formatItems);
     }
 
     /// <summary>
     /// 拆分格式字符串
     /// </summary>
-    private static List<string> SplitFormat( string format ) {
+    private static List<string> SplitFormat(string format)
+    {
         var result = new List<string>();
         var item = new StringBuilder();
-        for ( int i = 0; i < format.Length; i++ ) {
+        for (int i = 0; i < format.Length; i++)
+        {
             var temp = format[i];
-            if ( temp == '{' ) {
-                item.RemoveEnd( "{" );
-                if ( i == 0 ) {
-                    result.Add( string.Empty );
+            if (temp == '{')
+            {
+                item.RemoveEnd("{");
+                if (i == 0)
+                {
+                    result.Add(string.Empty);
                 }
-                if ( item.Length > 0 ) {
-                    result.Add( item.ToString() );
+                if (item.Length > 0)
+                {
+                    result.Add(item.ToString());
                     item.Clear();
                 }
-                item.Append( temp );
+                item.Append(temp);
                 continue;
             }
-            if ( temp == '}' ) {
-                if( item.ToString().IsEmpty() )
+            if (temp == '}')
+            {
+                if (item.ToString().IsEmpty())
                     continue;
-                item.RemoveEnd( "}" );
-                item.Append( temp );
-                result.Add( item.ToString() );
+                item.RemoveEnd("}");
+                item.Append(temp);
+                result.Add(item.ToString());
                 item.Clear();
-                if ( i == format.Length - 1 )
-                    result.Add( string.Empty );
+                if (i == format.Length - 1)
+                    result.Add(string.Empty);
                 continue;
             }
-            item.Append( temp );
-            if ( i == format.Length - 1 ) {
-                result.Add( item.ToString() );
+            item.Append(temp);
+            if (i == format.Length - 1)
+            {
+                result.Add(item.ToString());
                 item.Clear();
             }
         }
@@ -300,36 +326,190 @@ public static class String {
     /// <summary>
     /// 提取字符串中变量值
     /// </summary>
-    private static IDictionary<string, string> ExtractValue( string value, List<string> formatItems ) {
+    private static IDictionary<string, string> ExtractValue(string value, List<string> formatItems)
+    {
         var result = new Dictionary<string, string>();
         var leftIndex = 0;
         var length = 0;
-        for ( int i = 0; i < formatItems.Count; i++ ) {
+        for (int i = 0; i < formatItems.Count; i++)
+        {
             var item = formatItems[i];
-            if ( item == string.Empty )
+            if (item == string.Empty)
                 continue;
-            if ( item.StartsWith( "{", StringComparison.Ordinal ) == false ) {
+            if (item.StartsWith("{", StringComparison.Ordinal) == false)
+            {
                 leftIndex += item.Length;
                 continue;
             }
-            if ( i + 1 < formatItems.Count ) {
+            if (i + 1 < formatItems.Count)
+            {
                 var rightItem = formatItems[i + 1];
-                if ( rightItem == string.Empty )
+                if (rightItem == string.Empty)
                     length = value.Length - leftIndex;
                 else
-                    length = value.IndexOf( rightItem, leftIndex + 1, StringComparison.OrdinalIgnoreCase ) - leftIndex;
+                    length = value.IndexOf(rightItem, leftIndex + 1, StringComparison.OrdinalIgnoreCase) - leftIndex;
             }
-            var varName = item.Replace( "{", "" ).Replace( "}", "" );
-            if ( length <= 0 ) {
-                result.Add( varName, string.Empty );
+            var varName = item.Replace("{", "").Replace("}", "");
+            if (length <= 0)
+            {
+                result.Add(varName, string.Empty);
                 continue;
             }
-            var variableValue = value.Substring( leftIndex, length );
-            result.Add( varName, variableValue );
+            var variableValue = value.Substring(leftIndex, length);
+            result.Add(varName, variableValue);
             leftIndex += length;
         }
         return result;
     }
 
+    #endregion
+
+    #region IsEmail(是否是邮箱)
+    public static bool IsEmail(this string value, bool enableFullDomainLiterals = false)
+    {
+        if (value == null)
+        {
+            return true;
+        }
+
+        if (!(value is string valueAsString))
+        {
+            return false;
+        }
+
+        if (!enableFullDomainLiterals && (valueAsString.Contains('\r') || valueAsString.Contains('\n')))
+        {
+            return false;
+        }
+
+        // only return true if there is only 1 '@' character
+        // and it is neither the first nor the last character
+        int index = valueAsString.IndexOf('@');
+
+        return
+            index > 0 &&
+            index != valueAsString.Length - 1 &&
+            index == valueAsString.LastIndexOf('@');
+    }
+    #endregion
+
+    #region IsUrl(是否是Url)
+    public static bool IsUrl(this string value)
+    {
+        if (value == null)
+        {
+            return true;
+        }
+
+        return value is string valueAsString &&
+            (valueAsString.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+            || valueAsString.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+            || valueAsString.StartsWith("ftp://", StringComparison.OrdinalIgnoreCase));
+    }
+    #endregion
+
+    #region IsPhone(是否是电话)
+    public static bool IsPhone(this string value)
+    {
+        if (value == null)
+        {
+            return true;
+        }
+
+        if (!(value is string valueAsString))
+        {
+            return false;
+        }
+
+        ReadOnlySpan<char> valueSpan = valueAsString.Replace("+", string.Empty).AsSpan().TrimEnd();
+        valueSpan = RemoveExtension(valueSpan);
+
+        bool digitFound = false;
+        foreach (char c in valueSpan)
+        {
+            if (char.IsDigit(c))
+            {
+                digitFound = true;
+                break;
+            }
+        }
+
+        if (!digitFound)
+        {
+            return false;
+        }
+
+        foreach (char c in valueSpan)
+        {
+            if (!(char.IsDigit(c)
+                || char.IsWhiteSpace(c)
+                || AdditionalPhoneNumberCharacters.Contains(c)))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static ReadOnlySpan<char> RemoveExtension(ReadOnlySpan<char> potentialPhoneNumber)
+    {
+        int lastIndexOfExtension = potentialPhoneNumber
+            .LastIndexOf(ExtensionAbbreviationExtDot, StringComparison.OrdinalIgnoreCase);
+        if (lastIndexOfExtension >= 0)
+        {
+            ReadOnlySpan<char> extension = potentialPhoneNumber.Slice(
+                lastIndexOfExtension + ExtensionAbbreviationExtDot.Length);
+            if (MatchesExtension(extension))
+            {
+                return potentialPhoneNumber.Slice(0, lastIndexOfExtension);
+            }
+        }
+
+        lastIndexOfExtension = potentialPhoneNumber
+            .LastIndexOf(ExtensionAbbreviationExt, StringComparison.OrdinalIgnoreCase);
+        if (lastIndexOfExtension >= 0)
+        {
+            ReadOnlySpan<char> extension = potentialPhoneNumber.Slice(
+                lastIndexOfExtension + ExtensionAbbreviationExt.Length);
+            if (MatchesExtension(extension))
+            {
+                return potentialPhoneNumber.Slice(0, lastIndexOfExtension);
+            }
+        }
+
+        lastIndexOfExtension = potentialPhoneNumber
+            .LastIndexOf(ExtensionAbbreviationX, StringComparison.OrdinalIgnoreCase);
+        if (lastIndexOfExtension >= 0)
+        {
+            ReadOnlySpan<char> extension = potentialPhoneNumber.Slice(
+                lastIndexOfExtension + ExtensionAbbreviationX.Length);
+            if (MatchesExtension(extension))
+            {
+                return potentialPhoneNumber.Slice(0, lastIndexOfExtension);
+            }
+        }
+
+        return potentialPhoneNumber;
+    }
+
+    private static bool MatchesExtension(ReadOnlySpan<char> potentialExtension)
+    {
+        potentialExtension = potentialExtension.TrimStart();
+        if (potentialExtension.Length == 0)
+        {
+            return false;
+        }
+
+        foreach (char c in potentialExtension)
+        {
+            if (!char.IsDigit(c))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
     #endregion
 }

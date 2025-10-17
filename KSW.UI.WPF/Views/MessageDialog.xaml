@@ -23,7 +23,7 @@
             <EventSetter Event="MouseMove" Handler="Window_MouseMove"></EventSetter>
         </Style>
     </prism:Dialog.WindowStyle>
-    <Border BorderThickness="1" BorderBrush="Gray" Background="White"  CornerRadius="15">
+    <Border BorderThickness="1" BorderBrush="Gray" Background="{DynamicResource KSW.Border.Background}"  CornerRadius="15">
         <Grid Margin="16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
