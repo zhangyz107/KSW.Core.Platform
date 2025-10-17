@@ -25,5 +25,13 @@ namespace KSW.UI.WPF.Views
         {
             InitializeComponent();
         }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(sender is Window window && e.LeftButton == MouseButtonState.Pressed)
+            {
+                window.DragMove();
+            }
+        }
     }
 }

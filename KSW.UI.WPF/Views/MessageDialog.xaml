@@ -20,6 +20,7 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Width" Value="300"/>
             <Setter Property="Height" Value="180"/>
+            <EventSetter Event="MouseMove" Handler="Window_MouseMove"></EventSetter>
         </Style>
     </prism:Dialog.WindowStyle>
     <Border BorderThickness="1" BorderBrush="Gray" Background="White"  CornerRadius="15">
