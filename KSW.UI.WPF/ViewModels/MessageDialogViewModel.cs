@@ -13,6 +13,7 @@ namespace KSW.UI.WPF.ViewModels
     {
         #region Fields
         private MessageDialogParameters _dialogParamters;
+        private string _messageTitle;
         private string _messageText;
         private string _messageIcon;
         private string _buttonOneText;
@@ -21,6 +22,15 @@ namespace KSW.UI.WPF.ViewModels
         #endregion
 
         #region Properties
+        /// <summary>
+        /// 消息标题
+        /// </summary>
+        public string MessageTitle
+        {
+            get => _messageTitle;
+            set => SetProperty(ref _messageTitle, value);
+        }
+
         /// <summary>
         /// 消息文字
         /// </summary>

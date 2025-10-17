@@ -17,7 +17,7 @@ namespace KSW.Helpers
         {
             try
             {
-               var dialogParameters = GetMessageDialogParameters(messageText);
+                var dialogParameters = GetMessageDialogParameters(messageText);
 
                 return await ShowMessageDialog(dialogService, dialogParameters);
             }
@@ -28,24 +28,32 @@ namespace KSW.Helpers
             return null;
         }
 
-        public static async Task<IDialogResult> ShowMessageDialog(this IDialogService dialogService, string messageText, MessageBoxButton button)
+        public static async Task<IDialogResult> ShowMessageDialog(this IDialogService dialogService, string messageText, string messageTitle)
         {
-            var dialogParameters = GetMessageDialogParameters(messageText, button);
+            var dialogParameters = GetMessageDialogParameters(messageText, messageTitle);
 
             return await ShowMessageDialog(dialogService, dialogParameters);
         }
 
-        public static async Task<IDialogResult> ShowMessageDialog(this IDialogService dialogService, string messageText, MessageBoxButton button, MessageBoxImage icon)
+        public static async Task<IDialogResult> ShowMessageDialog(this IDialogService dialogService, string messageText, string messageTitle, MessageBoxButton button)
         {
-            var dialogParameters = GetMessageDialogParameters(messageText, button, icon);
+            var dialogParameters = GetMessageDialogParameters(messageText, messageText, button);
 
             return await ShowMessageDialog(dialogService, dialogParameters);
         }
 
-        private static MessageDialogParameters GetMessageDialogParameters(string messageText = null, MessageBoxButton button = MessageBoxButton.OK, MessageBoxImage icon = MessageBoxImage.None)
+        public static async Task<IDialogResult> ShowMessageDialog(this IDialogService dialogService, string messageText, string messageTitle, MessageBoxButton button, MessageBoxImage icon)
+        {
+            var dialogParameters = GetMessageDialogParameters(messageText, messageTitle, button, icon);
+
+            return await ShowMessageDialog(dialogService, dialogParameters);
+        }
+
+        private static MessageDialogParameters GetMessageDialogParameters(string messageText = null, string messageTitle = null, MessageBoxButton button = MessageBoxButton.OK, MessageBoxImage icon = MessageBoxImage.None)
         {
             return new MessageDialogParameters()
             {
+                MessageTitle = messageTitle,
                 MessageText = messageText,
                 MessageButton = button,
                 MessageIcon = icon

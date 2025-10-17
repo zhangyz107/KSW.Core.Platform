@@ -18,30 +18,63 @@
             <Setter Property="ResizeMode" Value="NoResize"/>
             <Setter Property="AllowsTransparency" Value="True"></Setter>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Width" Value="300"/>
-            <Setter Property="Height" Value="180"/>
+            <Setter Property="SizeToContent" Value="WidthAndHeight"></Setter>
+            <Setter Property="MaxHeight" Value="452"></Setter>
+            <Setter Property="MaxWidth" Value="414"></Setter>
             <EventSetter Event="MouseMove" Handler="Window_MouseMove"></EventSetter>
         </Style>
     </prism:Dialog.WindowStyle>
-    <Border BorderThickness="1" BorderBrush="Gray" Background="{DynamicResource KSW.Border.Background}"  CornerRadius="15">
-        <Grid Margin="16">
+    <Border BorderThickness="2" BorderBrush="#AEAEAE" Background="{DynamicResource KSW.Border.Background}"  CornerRadius="15">
+        <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Image  Source="{Binding MessageIcon}" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid Margin="24,24,24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image 
+                    Source="{Binding MessageIcon}"
+                    Margin="0,0,8,0"
+                    Width="32" 
+                    Height="32"
+                    VerticalAlignment="Center">
+                </Image>
+                <TextBlock 
+                    Grid.Column="1" 
+                    FontSize="16" 
+                    Text="{Binding MessageTitle}"
+                    TextAlignment="Center" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left" 
+                    ToolTip="{Binding Path=Text,RelativeSource={RelativeSource Mode=Self}}" 
+                    Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
+                    TextTrimming="CharacterEllipsis"
+                    TextWrapping="NoWrap"></TextBlock>
+            </Grid>
+            <ScrollViewer Grid.Row="1"
+                          Margin="48,24" 
+                          HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto">
+                <TextBlock 
+                    VerticalAlignment="Center"
+                    TextWrapping="Wrap"
+                    TextAlignment="Left"
+                    Text="{Binding MessageText}" 
+                    Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
+                </TextBlock>
+            </ScrollViewer>
 
-            </Image>
-            <TextBlock Grid.Column="1" Margin="16" x:Name="MessageText" TextWrapping="Wrap" Text="{Binding MessageText}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" ToolTip="{Binding Path=Text,RelativeSource={RelativeSource Mode=Self}}"></TextBlock>
-
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="{Binding ButtonOneText}" Command="{Binding OKCommand}"></Button>
-                <Button Margin="16,0,0,0" Content="{language:L No}" Style="{StaticResource MaterialDesignOutlinedLightButton}" Visibility="{Binding IsButtonTwoVisiblity,Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding NoCommand}"></Button>
-                <Button Margin="16,0,0,0" Content="{language:L Cancel}" Style="{StaticResource MaterialDesignOutlinedLightButton}" Visibility="{Binding IsButtonThreeVisiblity,Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding CancelCommand}"></Button>
+            <StackPanel Grid.Row="2"  
+                        Margin="24,0,24,24"
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Right">
+                <Button  Content="{Binding ButtonOneText}" Command="{Binding OKCommand}" Foreground="White" Background="#54A9FF"></Button>
+                <Button Margin="16,0,0,0" Content="{language:L No}" Style="{StaticResource MaterialDesignOutlinedLightButton}" Visibility="{Binding IsButtonTwoVisiblity,Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding NoCommand}" Foreground="White" Background="#FC725A"></Button>
+                <Button Margin="16,0,0,0" Content="{language:L Cancel}" Style="{StaticResource MaterialDesignOutlinedLightButton}" Visibility="{Binding IsButtonThreeVisiblity,Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding CancelCommand}" Foreground="White"></Button>
             </StackPanel>
         </Grid>
     </Border>

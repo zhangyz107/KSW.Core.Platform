@@ -13,6 +13,10 @@ namespace KSW.Data
     public class MessageDialogParameters
     {
         /// <summary>
+        /// 显示的标题
+        /// </summary>
+        public string MessageTitle { get; set; }
+        /// <summary>
         /// 指定要显示的文本
         /// </summary>
         public string MessageText { get; set; }
