@@ -21,6 +21,7 @@
             <Setter Property="SizeToContent" Value="WidthAndHeight"></Setter>
             <Setter Property="MaxHeight" Value="452"></Setter>
             <Setter Property="MaxWidth" Value="414"></Setter>
+            <Setter Property="MinWidth" Value="300"></Setter>
             <EventSetter Event="MouseMove" Handler="Window_MouseMove"></EventSetter>
         </Style>
     </prism:Dialog.WindowStyle>
@@ -72,9 +73,9 @@
                         Margin="24,0,24,24"
                         Orientation="Horizontal" 
                         HorizontalAlignment="Right">
-                <Button  Content="{Binding ButtonOneText}" Command="{Binding OKCommand}" Foreground="White" Background="#54A9FF"></Button>
-                <Button Margin="16,0,0,0" Content="{language:L No}" Style="{StaticResource MaterialDesignOutlinedLightButton}" Visibility="{Binding IsButtonTwoVisiblity,Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding NoCommand}" Foreground="White" Background="#FC725A"></Button>
-                <Button Margin="16,0,0,0" Content="{language:L Cancel}" Style="{StaticResource MaterialDesignOutlinedLightButton}" Visibility="{Binding IsButtonThreeVisiblity,Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding CancelCommand}" Foreground="White"></Button>
+                <Button  Content="{Binding ButtonOneText}" Command="{Binding OKCommand}" Foreground="White" Background="{DynamicResource KSW.Toast.Brush.Information}" BorderThickness="0"></Button>
+                <Button Margin="16,0,0,0" Content="{language:L No}" Visibility="{Binding IsButtonTwoVisiblity,Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding NoCommand}" Foreground="White" Background="{DynamicResource KSW.Toast.Brush.Error}" BorderThickness="0"></Button>
+                <Button Margin="16,0,0,0" Content="{language:L Cancel}" Style="{StaticResource MaterialDesignOutlinedLightButton}" Visibility="{Binding IsButtonThreeVisiblity,Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding CancelCommand}" Foreground="{DynamicResource KSW.Button.Foreground.Cancel}" Background="{DynamicResource KSW.Button.Background.Cancel}" BorderThickness="0"></Button>
             </StackPanel>
         </Grid>
     </Border>

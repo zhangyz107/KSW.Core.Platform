@@ -42,7 +42,14 @@ namespace KSW.Helpers
             return await ShowMessageDialog(dialogService, dialogParameters);
         }
 
-        public static async Task<IDialogResult> ShowMessageDialog(this IDialogService dialogService, string messageText, string messageTitle, MessageBoxButton button, MessageBoxImage icon)
+        public static async Task<IDialogResult> ShowMessageDialog(this IDialogService dialogService, string messageText, MessageBoxButton button, MessageBoxImage icon)
+        {
+            var dialogParameters = GetMessageDialogParameters(messageText, null, button, icon);
+
+            return await ShowMessageDialog(dialogService, dialogParameters);
+        }
+
+        public static async Task<IDialogResult> ShowMessageDialog(this IDialogService dialogService, string messageText, string messageTitle = null, MessageBoxButton button = MessageBoxButton.OK, MessageBoxImage icon = MessageBoxImage.None)
         {
             var dialogParameters = GetMessageDialogParameters(messageText, messageTitle, button, icon);
 

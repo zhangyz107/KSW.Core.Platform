@@ -11,4 +11,6 @@
     <SolidColorBrush x:Key="KSW.Toast.Background.Error" Color="#442927"></SolidColorBrush>
 
     <SolidColorBrush x:Key="KSW.Border.Background" Color="#43444a"></SolidColorBrush>
+    <SolidColorBrush x:Key="KSW.Button.Foreground.Cancel" Color="#D9D9DA"></SolidColorBrush>
+    <SolidColorBrush x:Key="KSW.Button.Background.Cancel" Color="#595A5F"></SolidColorBrush>
 </ResourceDictionary>

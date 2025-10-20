@@ -109,6 +109,7 @@ namespace KSW.UI.WPF.ViewModels
             var messageDialogParameters = parameters.GetValue<MessageDialogParameters>("params");
             _dialogParamters = messageDialogParameters;
             MessageText = _dialogParamters.MessageText;
+            MessageTitle = _dialogParamters.MessageTitle;
             var basePath = $"pack://application:,,,/{GetType().Assembly.GetName().Name};component/resources/images";
             var messageIcon = basePath + "/{0}";
 
