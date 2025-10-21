@@ -52,7 +52,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left" 
                     ToolTip="{Binding Path=Text,RelativeSource={RelativeSource Mode=Self}}" 
-                    Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
+                    Foreground="{DynamicResource KSW.Brush.Foreground}"
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="NoWrap"></TextBlock>
             </Grid>
@@ -65,7 +65,7 @@
                     TextWrapping="Wrap"
                     TextAlignment="Left"
                     Text="{Binding MessageText}" 
-                    Foreground="{DynamicResource MaterialDesign.Brush.Foreground}">
+                    Foreground="{DynamicResource KSW.Brush.Foreground}">
                 </TextBlock>
             </ScrollViewer>
 

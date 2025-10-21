@@ -6,14 +6,13 @@
              xmlns:local="clr-namespace:KSW.UI.WPF.Controls"
              xmlns:messageCard="clr-namespace:KSW.UI.WPF.Controls"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:enums="clr-namespace:KSW.UI.WPF.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <messageCard:MessageCard.Resources>
         <DataTemplate x:Key="TemplateA" DataType="{x:Type local:Toast}">
             <TextBlock
-                Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
+                Foreground="{DynamicResource KSW.Brush.Foreground}"
                 FontWeight="SemiBold"
                 VerticalAlignment="Center"
                 Text="{Binding Content}"
@@ -22,7 +21,7 @@
         </DataTemplate>
         <DataTemplate x:Key="TemplateB" DataType="{x:Type sys:String}">
             <TextBlock
-                Foreground="{DynamicResource MaterialDesign.Brush.Foreground}"
+                Foreground="{DynamicResource KSW.Brush.Foreground}"
                 FontWeight="SemiBold"
                 Text="{Binding}"
                 VerticalAlignment="Center"
@@ -35,23 +34,19 @@
         </local:ToastDataTemplateSelector>
 
         <DataTemplate x:Key="ToastIconStyle" DataType="{x:Type enums:NotificationType}">
-            <materialDesign:PackIcon x:Name="ToastIcon" Width="20" Height="20"/>
+            <Image x:Name="ToastIcon" Width="20" Height="20"/>
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding }" Value="{x:Static enums:NotificationType.Information}">
-                    <Setter TargetName="ToastIcon" Property="Kind" Value="Information"></Setter>
-                    <Setter TargetName="ToastIcon" Property="Foreground" Value="{DynamicResource  KSW.Toast.Brush.Information}"></Setter>
+                    <Setter TargetName="ToastIcon" Property="Source" Value="/KSW.UI.WPF;component/Resources/Images/information.png"></Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding }" Value="{x:Static enums:NotificationType.Success}">
-                    <Setter TargetName="ToastIcon" Property="Kind" Value="CheckCircle"></Setter>
-                    <Setter TargetName="ToastIcon" Property="Foreground" Value="{DynamicResource KSW.Toast.Brush.Success}"></Setter>
+                    <Setter TargetName="ToastIcon" Property="Source" Value="/KSW.UI.WPF;component/Resources/Images/checkbox-circle.png"></Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding }" Value="{x:Static enums:NotificationType.Warning}">
-                    <Setter TargetName="ToastIcon" Property="Kind" Value="Alert"></Setter>
-                    <Setter TargetName="ToastIcon" Property="Foreground" Value="{DynamicResource KSW.Toast.Brush.Warning}"></Setter>
+                    <Setter TargetName="ToastIcon" Property="Source" Value="/KSW.UI.WPF;component/Resources/Images/alert.png"></Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding }" Value="{x:Static enums:NotificationType.Error}">
-                    <Setter TargetName="ToastIcon" Property="Kind" Value="AlertCircle"></Setter>
-                    <Setter TargetName="ToastIcon" Property="Foreground" Value="{DynamicResource KSW.Toast.Brush.Error}"></Setter>
+                    <Setter TargetName="ToastIcon" Property="Source" Value="/KSW.UI.WPF;component/Resources/Images/alert-circle.png"></Setter>
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>

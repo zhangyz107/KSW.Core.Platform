@@ -13,20 +13,13 @@
 	  <None Remove="Resources\Images\question.png" />
 	  <None Remove="Resources\Images\warning.png" />
 	</ItemGroup>
-	
-	<ItemGroup>
-		<PackageReference Include="MaterialDesignThemes" Version="$(MaterialDesignVersion)" />
-	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\KSW.Core\KSW.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Resource Include="Resources\Images\error.png" />
 	  <Resource Include="Resources\Images\information.png" />
-	  <Resource Include="Resources\Images\question.png" />
-	  <Resource Include="Resources\Images\warning.png" />
 	</ItemGroup>
 
 	<ItemGroup>
