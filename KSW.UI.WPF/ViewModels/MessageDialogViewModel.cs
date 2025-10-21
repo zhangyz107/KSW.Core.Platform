@@ -151,7 +151,7 @@ namespace KSW.UI.WPF.ViewModels
                     MessageIcon = string.Format(messageIcon, "question.png");
                     break;
                 case System.Windows.MessageBoxImage.Warning:
-                    MessageIcon = string.Format(messageIcon, "warning.png");
+                    MessageIcon = string.Format(messageIcon, "alert.png");
                     break;
                 case System.Windows.MessageBoxImage.Information:
                     MessageIcon = string.Format(messageIcon, "information.png");

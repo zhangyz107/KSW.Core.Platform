@@ -25,7 +25,9 @@
 	  <Resource Include="Resources\Images\alert-circle.png" />
 	  <Resource Include="Resources\Images\alert.png" />
 	  <Resource Include="Resources\Images\checkbox-circle.png" />
+	  <Resource Include="Resources\Images\error.png" />
 	  <Resource Include="Resources\Images\information.png" />
+	  <Resource Include="Resources\Images\question.png" />
 	</ItemGroup>
 
 	<ItemGroup>
