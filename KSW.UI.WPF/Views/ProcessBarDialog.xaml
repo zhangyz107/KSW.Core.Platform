@@ -44,7 +44,7 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-
+            
             <ContentControl Grid.Row="2">
                 <ContentControl.Style>
                     <Style TargetType="ContentControl">
