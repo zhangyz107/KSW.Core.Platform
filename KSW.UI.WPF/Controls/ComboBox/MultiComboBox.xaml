@@ -1,0 +1,217 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:KSW.UI.WPF.Controls"
+                    xmlns:converters="clr-namespace:KSW.UI.WPF.Converters">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/KSW.UI.WPF;component/Controls/Buttons/Button.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/KSW.UI.WPF;component/Controls/PathIcon/PathIcon.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+    <converters:VisibilityInverseConverter x:Key="VisibilityInverseConverter" ></converters:VisibilityInverseConverter>
+    <converters:ObjectConverter x:Key="ObjectConverter"></converters:ObjectConverter>
+    <ExponentialEase x:Key="ExponentialEaseOut" EasingMode="EaseOut" />
+    <DropShadowEffect x:Key="PopupShadowDepth" BlurRadius="12" Opacity="0.1" ShadowDepth="2" Color="Black" />
+
+    <!-- ComboBoxItem 样式，支持多选 -->
+    <Style x:Key="MultiSelectComboBoxItemStyle" TargetType="{x:Type controls:MultiComboBoxItem}">
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:MultiComboBoxItem}">
+                    <Border x:Name="PART_Border" 
+                         Padding="{TemplateBinding Padding}" 
+                         Background="{TemplateBinding Background}" 
+                         BorderBrush="{TemplateBinding BorderBrush}" 
+                         BorderThickness="{TemplateBinding BorderThickness}" 
+                         CornerRadius="{TemplateBinding Border.CornerRadius}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <controls:PathIcon
+                                      x:Name="CheckGlyph"
+                                      Grid.Column="0"
+                                      Width="16"
+                                      Height="16"
+                                      Margin="0,0,8,0"
+                                      VerticalAlignment="Center"
+                                      Data="{DynamicResource KSW.Icon.Tick}"
+                                      Opacity="0">
+                            </controls:PathIcon>
+                            <ContentPresenter
+                             x:Name="ContentPresenter"
+                             Grid.Column="1"
+                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                             VerticalAlignment="Center"
+                             Content="{TemplateBinding Content}"
+                             ContentTemplate="{TemplateBinding ContentTemplate}"
+                             Visibility="{TemplateBinding Content,Converter={StaticResource ObjectConverter}}"
+                             RecognizesAccessKey="True">
+                            </ContentPresenter>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource KSW.Text.Color0}"></Setter>
+                            <Setter TargetName="CheckGlyph" Property="Opacity" Value="1"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="CheckGlyph" Property="Opacity" Value="0"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource KSW.Text.Color0}" />
+                            <Setter Property="Background" Value="{DynamicResource KSW.Fill.Color0}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type controls:MultiComboBox}">
+        <Setter Property="Focusable" Value="True"></Setter>
+        <Setter Property="SelectionMode" Value="Multiple"></Setter>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MultiSelectComboBoxItemStyle}"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="MaxDropDownHeight" Value="300"></Setter>
+        <Setter Property="MinHeight" Value="32"></Setter>
+        <Setter Property="Background" Value="{DynamicResource KSW.Fill.Color0}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="12 4"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:MultiComboBox}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="OpenStoryboard">
+                            <DoubleAnimation EasingFunction="{StaticResource ExponentialEaseOut}" Storyboard.TargetName="PART_DropDown" Storyboard.TargetProperty="(Grid.RenderTransform).(ScaleTransform.ScaleY)" To="1" Duration="00:00:.2" />
+                        </Storyboard>
+                        <Storyboard x:Key="CloseStoryboard">
+                            <DoubleAnimation EasingFunction="{StaticResource ExponentialEaseOut}" Storyboard.TargetName="PART_DropDown" Storyboard.TargetProperty="(Grid.RenderTransform).(ScaleTransform.ScaleY)" To="0" Duration="00:00:.2" />
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Border 
+                        x:Name="PART_Border"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="3"
+                        SnapsToDevicePixels="True">
+                        <Grid Grid.IsSharedSizeScope="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto" SharedSizeGroup="ComboBoxButton"/>
+                            </Grid.ColumnDefinitions>
+                            <ToggleButton 
+                                x:Name="PART_ToggleButton" 
+                                Grid.ColumnSpan="2" 
+                                Background="Transparent" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                Style="{StaticResource ComboBoxToggleButtonStyle}">   
+                            </ToggleButton>
+                            <ScrollViewer 
+                                x:Name="PART_ScrollViewer" 
+                                Margin="{TemplateBinding Padding}" 
+                                HorizontalScrollBarVisibility="Disabled" 
+                                VerticalScrollBarVisibility="Auto"
+                                Focusable="False">
+                                <controls:SimpleWrapPanel x:Name="PART_SimpleWrapPanel" Spacing="2"></controls:SimpleWrapPanel>
+                            </ScrollViewer>
+                            <Popup  x:Name="PART_Popup" 
+                                    MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                    AllowsTransparency="True" 
+                                    Placement="Bottom"
+                                    PlacementTarget="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                    IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                    StaysOpen="False">
+                                <controls:SmallPanel x:Name="PART_DropDown" 
+                                 MinWidth="{TemplateBinding ActualWidth}" 
+                                 MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                 Background="{DynamicResource Background}"     
+                                 Margin="2,2,2,24"
+                                 SnapsToDevicePixels="True">
+                                    <controls:SmallPanel.RenderTransform>
+                                        <ScaleTransform ScaleY="0"></ScaleTransform>
+                                    </controls:SmallPanel.RenderTransform>
+                                    <Border x:Name="PART_DropDownBorder"
+                                            HorizontalAlignment="Stretch"
+                                            Background="{DynamicResource KSW.Background.Color3}"
+                                            BorderBrush="{DynamicResource KSW.Border.Color}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Padding="6,0"
+                                            CornerRadius="6"
+                                            Effect="{StaticResource PopupShadowDepth}"
+                                            SnapsToDevicePixels="True"
+                                            UseLayoutRounding="True">
+                                        <Grid Margin="0,8" ClipToBounds="False">
+                                            <ScrollViewer x:Name="DropDownScrollViewer" VerticalScrollBarVisibility="Auto">
+                                                <ItemsPresenter x:Name="PART_ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"></ItemsPresenter>
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Border>
+                                </controls:SmallPanel>
+                            </Popup>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDropDownOpen" Value="True">
+                            <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource KSW.Primary.Color}" />
+                        </Trigger>
+                        <Trigger SourceName="PART_ToggleButton" Property="IsChecked" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard x:Name="BeginStoryboardOpenStoryboard" Storyboard="{StaticResource OpenStoryboard}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="BeginStoryboardOpenStoryboard" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger SourceName="PART_ToggleButton" Property="IsChecked" Value="False">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard x:Name="BeginStoryboardCloseStoryboard" Storyboard="{StaticResource CloseStoryboard}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="BeginStoryboardCloseStoryboard" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource KSW.Fill.Color1}" />
+                        </Trigger>
+                        <Trigger SourceName="PART_Popup" Property="AllowsTransparency" Value="True">
+                            <Setter TargetName="PART_DropDownBorder" Property="Margin" Value="0,2,0,0" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsFocused" Value="True"></Condition>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="BorderBrush" Value="{DynamicResource KSW.Primary.Color}"></Setter>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsFocused" Value="False"></Condition>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

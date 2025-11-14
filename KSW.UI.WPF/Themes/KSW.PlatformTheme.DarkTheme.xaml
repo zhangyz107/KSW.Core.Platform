@@ -1,6 +1,207 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Color x:Key="KSW.WhiteColor">White</Color>
+    <Color x:Key="KSW.BlackColor">Black</Color>
+    <Color x:Key="KSW.Red0Color" >#6C090B</Color>
+    <Color x:Key="KSW.Red1Color" >#901110</Color>
+    <Color x:Key="KSW.Red2Color" >#B42019</Color>
+    <Color x:Key="KSW.Red3Color" >#D73324</Color>
+    <Color x:Key="KSW.Red4Color" >#FB4932</Color>
+    <Color x:Key="KSW.Red5Color" >#FC725A</Color>
+    <Color x:Key="KSW.Red6Color" >#FD9983</Color>
+    <Color x:Key="KSW.Red7Color" >#FDBEAC</Color>
+    <Color x:Key="KSW.Red8Color" >#FEE0D5</Color>
+    <Color x:Key="KSW.Red9Color" >#FFF3EF</Color>
+    <Color x:Key="KSW.Pink0Color" >#5C0730</Color>
+    <Color x:Key="KSW.Pink1Color" >#800E41</Color>
+    <Color x:Key="KSW.Pink2Color" >#A41751</Color>
+    <Color x:Key="KSW.Pink3Color" >#C72261</Color>
+    <Color x:Key="KSW.Pink4Color" >#D01D5A</Color>
+    <Color x:Key="KSW.Pink5Color" >#EF5686</Color>
+    <Color x:Key="KSW.Pink6Color" >#F37E9F</Color>
+    <Color x:Key="KSW.Pink7Color" >#F7A8BC</Color>
+    <Color x:Key="KSW.Pink8Color" >#FBD3DC</Color>
+    <Color x:Key="KSW.Pink9Color" >#FDEEF1</Color>
+    <Color x:Key="KSW.Purple0Color" >#4A1061</Color>
+    <Color x:Key="KSW.Purple1Color" >#5E1776</Color>
+    <Color x:Key="KSW.Purple2Color" >#731F8A</Color>
+    <Color x:Key="KSW.Purple3Color" >#89289F</Color>
+    <Color x:Key="KSW.Purple4Color" >#A033B3</Color>
+    <Color x:Key="KSW.Purple5Color" >#B553C2</Color>
+    <Color x:Key="KSW.Purple6Color" >#CA78D1</Color>
+    <Color x:Key="KSW.Purple7Color" >#DDA0E1</Color>
+    <Color x:Key="KSW.Purple8Color" >#EFCEF0</Color>
+    <Color x:Key="KSW.Purple9Color" >#F7EBF7</Color>
+    <Color x:Key="KSW.Violet0Color" >#401B77</Color>
+    <Color x:Key="KSW.Violet1Color" >#4C248C</Color>
+    <Color x:Key="KSW.Violet2Color" >#582EA0</Color>
+    <Color x:Key="KSW.Violet3Color" >#6439B5</Color>
+    <Color x:Key="KSW.Violet4Color" >#7246C9</Color>
+    <Color x:Key="KSW.Violet5Color" >#8865D4</Color>
+    <Color x:Key="KSW.Violet6Color" >#A288DF</Color>
+    <Color x:Key="KSW.Violet7Color" >#BEADE9</Color>
+    <Color x:Key="KSW.Violet8Color" >#DDD4F4</Color>
+    <Color x:Key="KSW.Violet9Color" >#F1EEFA</Color>
+    <Color x:Key="KSW.Indigo0Color" >#171E65</Color>
+    <Color x:Key="KSW.Indigo1Color" >#20297A</Color>
+    <Color x:Key="KSW.Indigo2Color" >#29368E</Color>
+    <Color x:Key="KSW.Indigo3Color" >#3444A3</Color>
+    <Color x:Key="KSW.Indigo4Color" >#4053B7</Color>
+    <Color x:Key="KSW.Indigo5Color" >#5F71C5</Color>
+    <Color x:Key="KSW.Indigo6Color" >#8191D4</Color>
+    <Color x:Key="KSW.Indigo7Color" >#A7B4E2</Color>
+    <Color x:Key="KSW.Indigo8Color" >#D1D8F1</Color>
+    <Color x:Key="KSW.Indigo9Color" >#EDEFF8</Color>
+    <Color x:Key="KSW.Blue0Color" >#053170</Color>
+    <Color x:Key="KSW.Blue1Color" >#0A4694</Color>
+    <Color x:Key="KSW.Blue2Color" >#135CB8</Color>
+    <Color x:Key="KSW.Blue3Color" >#1D75DB</Color>
+    <Color x:Key="KSW.Blue4Color" >#2990FF</Color>
+    <Color x:Key="KSW.Blue5Color" >#54A9FF</Color>
+    <Color x:Key="KSW.Blue6Color" >#7FC1FF</Color>
+    <Color x:Key="KSW.Blue7Color" >#A9D7FF</Color>
+    <Color x:Key="KSW.Blue8Color" >#D4ECFF</Color>
+    <Color x:Key="KSW.Blue9Color" >#EFF8FF</Color>
+    <Color x:Key="KSW.LightBlue0Color" >#003761</Color>
+    <Color x:Key="KSW.LightBlue1Color" >#004D85</Color>
+    <Color x:Key="KSW.LightBlue2Color" >#0366A9</Color>
+    <Color x:Key="KSW.LightBlue3Color" >#0A81CC</Color>
+    <Color x:Key="KSW.LightBlue4Color" >#139FF0</Color>
+    <Color x:Key="KSW.LightBlue5Color" >#40B4F3</Color>
+    <Color x:Key="KSW.LightBlue6Color" >#6EC8F6</Color>
+    <Color x:Key="KSW.LightBlue7Color" >#9DDCF9</Color>
+    <Color x:Key="KSW.LightBlue8Color" >#CEEEFC</Color>
+    <Color x:Key="KSW.LightBlue9Color" >#EBF8FE</Color>
+    <Color x:Key="KSW.Cyan0Color" >#04343D</Color>
+    <Color x:Key="KSW.Cyan1Color" >#074F5C</Color>
+    <Color x:Key="KSW.Cyan2Color" >#0A6C7B</Color>
+    <Color x:Key="KSW.Cyan3Color" >#0E8999</Color>
+    <Color x:Key="KSW.Cyan4Color" >#13A8B8</Color>
+    <Color x:Key="KSW.Cyan5Color" >#38BBC6</Color>
+    <Color x:Key="KSW.Cyan6Color" >#62CDD4</Color>
+    <Color x:Key="KSW.Cyan7Color" >#91DFE3</Color>
+    <Color x:Key="KSW.Cyan8Color" >#C6EFF1</Color>
+    <Color x:Key="KSW.Cyan9Color" >#E7F7F8</Color>
+    <Color x:Key="KSW.Teal0Color" >#023C39</Color>
+    <Color x:Key="KSW.Teal1Color" >#045A55</Color>
+    <Color x:Key="KSW.Teal2Color" >#07776F</Color>
+    <Color x:Key="KSW.Teal3Color" >#0A9588</Color>
+    <Color x:Key="KSW.Teal4Color" >#0EB3A1</Color>
+    <Color x:Key="KSW.Teal5Color" >#33C2B0</Color>
+    <Color x:Key="KSW.Teal6Color" >#5ED1C1</Color>
+    <Color x:Key="KSW.Teal7Color" >#8EE1D3</Color>
+    <Color x:Key="KSW.Teal8Color" >#C4F0E8</Color>
+    <Color x:Key="KSW.Teal9Color" >#E6F7F4</Color>
+    <Color x:Key="KSW.Green0Color" >#123C19</Color>
+    <Color x:Key="KSW.Green1Color" >#1C5A25</Color>
+    <Color x:Key="KSW.Green2Color" >#277731</Color>
+    <Color x:Key="KSW.Green3Color" >#32953D</Color>
+    <Color x:Key="KSW.Green4Color" >#3EB349</Color>
+    <Color x:Key="KSW.Green5Color" >#5DC264</Color>
+    <Color x:Key="KSW.Green6Color" >#7FD184</Color>
+    <Color x:Key="KSW.Green7Color" >#A6E1A8</Color>
+    <Color x:Key="KSW.Green8Color" >#D0F0D1</Color>
+    <Color x:Key="KSW.Green9Color">#ECF7EC</Color>
+    <Color x:Key="KSW.LightGreen0Color" >#263D13</Color>
+    <Color x:Key="KSW.LightGreen1Color" >#3B5C1D</Color>
+    <Color x:Key="KSW.LightGreen2Color" >#517B28</Color>
+    <Color x:Key="KSW.LightGreen3Color" >#679934</Color>
+    <Color x:Key="KSW.LightGreen4Color" >#7FB840</Color>
+    <Color x:Key="KSW.LightGreen5Color" >#97C65F</Color>
+    <Color x:Key="KSW.LightGreen6Color">#B0D481</Color>
+    <Color x:Key="KSW.LightGreen7Color" >#C9E3A7</Color>
+    <Color x:Key="KSW.LightGreen8Color" >#E4F1D1</Color>
+    <Color x:Key="KSW.LightGreen9Color" >#F3F8ED</Color>
+    <Color x:Key="KSW.Lime0Color" >#314603</Color>
+    <Color x:Key="KSW.Lime1Color" >#4B6905</Color>
+    <Color x:Key="KSW.Lime2Color" >#678D09</Color>
+    <Color x:Key="KSW.Lime3Color" >#84B00C</Color>
+    <Color x:Key="KSW.Lime4Color" >#A2D311</Color>
+    <Color x:Key="KSW.Lime5Color" >#AEDC3A</Color>
+    <Color x:Key="KSW.Lime6Color" >#BDE566</Color>
+    <Color x:Key="KSW.Lime7Color" >#CFED96</Color>
+    <Color x:Key="KSW.Lime8Color" >#E5F6C9</Color>
+    <Color x:Key="KSW.Lime9Color" >#F3FBE9</Color>
+    <Color x:Key="KSW.Yellow0Color" >#544903</Color>
+    <Color x:Key="KSW.Yellow1Color" >#7E6C06</Color>
+    <Color x:Key="KSW.Yellow2Color" >#A88E0A</Color>
+    <Color x:Key="KSW.Yellow3Color" >#D2AF0F</Color>
+    <Color x:Key="KSW.Yellow4Color" >#FCCE14</Color>
+    <Color x:Key="KSW.Yellow5Color" >#FDDE43</Color>
+    <Color x:Key="KSW.Yellow6Color" >#FDEB71</Color>
+    <Color x:Key="KSW.Yellow7Color" >#FEF5A0</Color>
+    <Color x:Key="KSW.Yellow8Color" >#FEFBD0</Color>
+    <Color x:Key="KSW.Yellow9Color" >#FFFEEC</Color>
+    <Color x:Key="KSW.Amber0Color" >#512E09</Color>
+    <Color x:Key="KSW.Amber1Color" >#794B0F</Color>
+    <Color x:Key="KSW.Amber2Color" >#A16B16</Color>
+    <Color x:Key="KSW.Amber3Color" >#CA8F1E</Color>
+    <Color x:Key="KSW.Amber4Color" >#F2B726</Color>
+    <Color x:Key="KSW.Amber5Color" >#F5CA50</Color>
+    <Color x:Key="KSW.Amber6Color" >#F7DB7A</Color>
+    <Color x:Key="KSW.Amber7Color" >#FAEAA6</Color>
+    <Color x:Key="KSW.Amber8Color" >#FCF6D2</Color>
+    <Color x:Key="KSW.Amber9Color" >#FEFBED</Color>
+    <Color x:Key="KSW.Orange0Color" >#551F03</Color>
+    <Color x:Key="KSW.Orange1Color" >#803506</Color>
+    <Color x:Key="KSW.Orange2Color" >#AA500A</Color>
+    <Color x:Key="KSW.Orange3Color" >#D56F0F</Color>
+    <Color x:Key="KSW.Orange4Color" >#FF9214</Color>
+    <Color x:Key="KSW.Orange5Color" >#FFAE43</Color>
+    <Color x:Key="KSW.Orange6Color" >#FFC772</Color>
+    <Color x:Key="KSW.Orange7Color" >#FFDDA1</Color>
+    <Color x:Key="KSW.Orange8Color" >#FFEFD0</Color>
+    <Color x:Key="KSW.Orange9Color" >#FFF9ED</Color>
+    <Color x:Key="KSW.Grey0Color" >#1C1F23</Color>
+    <Color x:Key="KSW.Grey1Color" >#2E3238</Color>
+    <Color x:Key="KSW.Grey2Color" >#41464C</Color>
+    <Color x:Key="KSW.Grey3Color" >#555B61</Color>
+    <Color x:Key="KSW.Grey4Color" >#6B7075</Color>
+    <Color x:Key="KSW.Grey5Color" >#888D92</Color>
+    <Color x:Key="KSW.Grey6Color" >#A7ABB0</Color>
+    <Color x:Key="KSW.Grey7Color" >#C6CACD</Color>
+    <Color x:Key="KSW.Grey8Color" >#E6E8EA</Color>
+    <Color x:Key="KSW.Grey9Color" >#F9F9F9</Color>
+    <Color x:Key="KSW.Background0Color">#16161A</Color>
+    <Color x:Key="KSW.Background1Color">#232429</Color>
+    <Color x:Key="KSW.Background2Color">#35363C</Color>
+    <Color x:Key="KSW.Background3Color">#43444A</Color>
+    <Color x:Key="KSW.Background4Color">#4F5159</Color>
+    <Color x:Key="KSW.AIPurple0Color" >#3A1770</Color>
+    <Color x:Key="KSW.AIPurple1Color" >#532394</Color>
+    <Color x:Key="KSW.AIPurple2Color" >#6F31B8</Color>
+    <Color x:Key="KSW.AIPurple3Color" >#8D41DB</Color>
+    <Color x:Key="KSW.AIPurple4Color" >#A744FF</Color>
+    <Color x:Key="KSW.AIPurple5Color" >#C375FF</Color>
+    <Color x:Key="KSW.AIPurple6Color" >#D598FF</Color>
+    <Color x:Key="KSW.AIPurple7Color" >#E5BAFF</Color>
+    <Color x:Key="KSW.AIPurple8Color" >#F3DDFF</Color>
+    <Color x:Key="KSW.AIPurple9Color" >#FBF3FF</Color>
+
+    <SolidColorBrush x:Key="KSW.Text.Color0" Color="{StaticResource KSW.Grey9Color}"></SolidColorBrush>
+    <SolidColorBrush x:Key="KSW.Text.Color1" Opacity="0.8" Color="{StaticResource KSW.Grey9Color}"></SolidColorBrush>
+    <SolidColorBrush x:Key="KSW.Text.Color2" Opacity="0.62" Color="{StaticResource KSW.Grey9Color}"></SolidColorBrush>
+    <SolidColorBrush x:Key="KSW.Text.DisabledColor" Opacity="0.35" Color="{StaticResource KSW.Grey9Color}" />
+
+    <!--  Primary  -->
+    <SolidColorBrush x:Key="KSW.Primary.Color" Color="{StaticResource KSW.Blue5Color}" />
+
+    <!--  Fill  -->
+    <SolidColorBrush x:Key="KSW.Fill.Color0" Opacity="0.12" Color="{StaticResource KSW.WhiteColor}" />
+    <SolidColorBrush x:Key="KSW.Fill.Color1" Opacity="0.09" Color="{StaticResource KSW.Grey8Color}" />
+
+    <SolidColorBrush x:Key="KSW.Pointerover.Color" Color="{StaticResource KSW.Blue6Color}" />
+
+    <SolidColorBrush x:Key="KSW.Background.Color3" Color="{StaticResource KSW.Background3Color}" />
+    <SolidColorBrush x:Key="KSW.Background.Color4" Color="{StaticResource KSW.Background4Color}"></SolidColorBrush>
+
+    <SolidColorBrush x:Key="KSW.Active.Color" Color="{StaticResource KSW.Blue7Color}" />
+    <SolidColorBrush x:Key="KSW.Disabled.Color" Color="{StaticResource KSW.Blue2Color}" />
+
+    <SolidColorBrush x:Key="KSW.ClosableTag.Brush.Border" Opacity="0.7" Color="{StaticResource KSW.Grey2Color}"/>
+    <SolidColorBrush x:Key="KSW.Combobox.Brush.Border" Opacity="0.7" Color="Transparent"/>
+
     <SolidColorBrush x:Key="KSW.Brush.Foreground" Color="#FFFFFF"></SolidColorBrush>
     <SolidColorBrush x:Key="KSW.Toast.Brush.Information" Color="#54a9ff"></SolidColorBrush>
     <SolidColorBrush x:Key="KSW.Toast.Brush.Success" Color="#5dc264"></SolidColorBrush>

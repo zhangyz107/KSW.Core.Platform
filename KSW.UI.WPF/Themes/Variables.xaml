@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:Double x:Key="KSW.Icon.Width.Medium">16</sys:Double>
+
+    <sys:Double x:Key="KSW.CheckBox.BoxGlyphWidth">16</sys:Double>
+    <sys:Double x:Key="KSW.CheckBox.BoxGlyphHeight">16</sys:Double>
+
+    <sys:Double x:Key="KSW.ComboBoxIcon.Width">32</sys:Double>
+
+    <Thickness x:Key="KSW.Thickness.ExtraTight">4</Thickness>
+    <!-- 宽度 - 超紧凑 -->
+
+    <Thickness x:Key="KSW.Border.Thickness">1</Thickness>
+
+    <CornerRadius x:Key="KSW.Border.Radius.Small">3</CornerRadius>
+    <CornerRadius x:Key="KSW.Border.Radius.Medium">6</CornerRadius>
+    <CornerRadius x:Key="KSW.Border.Radius.Large">12</CornerRadius>
+    <CornerRadius x:Key="KSW.Border.Radius.Full">9999</CornerRadius>
+</ResourceDictionary>
