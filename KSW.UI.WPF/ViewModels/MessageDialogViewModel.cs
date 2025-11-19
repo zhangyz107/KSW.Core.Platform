@@ -116,23 +116,23 @@ namespace KSW.UI.WPF.ViewModels
             switch (_dialogParamters.MessageButton)
             {
                 case System.Windows.MessageBoxButton.OK:
-                    ButtonOneText = LanguageManager.Instance["Ok"];
+                    ButtonOneText = LanguageHelper.Manager["Ok"];
                     IsButtonTwoVisiblity = false;
                     IsButtonThreeVisiblity = false;
 
                     break;
                 case System.Windows.MessageBoxButton.OKCancel:
-                    ButtonOneText = LanguageManager.Instance["Ok"];
+                    ButtonOneText = LanguageHelper.Manager["Ok"];
                     IsButtonTwoVisiblity = false;
                     IsButtonThreeVisiblity = true;
                     break;
                 case System.Windows.MessageBoxButton.YesNoCancel:
-                    ButtonOneText = LanguageManager.Instance["Yes"];
+                    ButtonOneText = LanguageHelper.Manager["Yes"];
                     IsButtonTwoVisiblity = true;
                     IsButtonThreeVisiblity = true;
                     break;
                 case System.Windows.MessageBoxButton.YesNo:
-                    ButtonOneText = LanguageManager.Instance["Yes"];
+                    ButtonOneText = LanguageHelper.Manager["Yes"];
                     IsButtonTwoVisiblity = true;
                     IsButtonThreeVisiblity = false;
                     break;

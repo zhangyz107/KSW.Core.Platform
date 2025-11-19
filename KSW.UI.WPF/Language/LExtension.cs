@@ -15,6 +15,6 @@ namespace KSW.UI.WPF.Language
 
         }
 
-        public override object LanguageSource => LanguageManager.Instance;
+        public override object LanguageSource => LanguageHelper.Manager;
     }
 }
