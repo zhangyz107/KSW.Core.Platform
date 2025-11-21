@@ -13,7 +13,10 @@ namespace KSW.UI.WPF.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is not null ? Visibility.Visible : Visibility.Collapsed;
+            if (bool.TryParse(parameter?.ToString(),out bool isInverse) && isInverse)
+                return value is null ? Visibility.Visible : Visibility.Collapsed;
+            else
+                return value is not null ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

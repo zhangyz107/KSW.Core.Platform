@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/KSW.UI.WPF;component/Controls/Timeline/Timeline.xaml"></ResourceDictionary>
         <ResourceDictionary Source="/KSW.UI.WPF;component/Controls/ComboBox/MultiCombobox.xaml"></ResourceDictionary>
         <ResourceDictionary Source="/KSW.UI.WPF;component/Controls/PathIcon/PathIcon.xaml"></ResourceDictionary>
         <ResourceDictionary Source="/KSW.UI.WPF;component/Controls/Buttons/Button.xaml"></ResourceDictionary>
