@@ -21,6 +21,19 @@ namespace KSW.UI.WPF.Controls
         public static readonly DependencyProperty ModeProperty =
             DependencyProperty.Register("Mode", typeof(int), typeof(TimelinePanel));
 
+        static TimelinePanel()
+        {
+            ModeProperty.OverrideMetadata(typeof(TimelinePanel), new FrameworkPropertyMetadata(TimelineDisplayMode.Left, FrameworkPropertyMetadataOptions.AffectsMeasure, OnModeChanged));
+        }
+
+        private static void OnModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            // 属性变更处理
+            var panel = (TimelinePanel)d;
+            panel.InvalidateMeasure();
+            panel.InvalidateArrange();
+        }
+
         protected override Size MeasureOverride(Size availableSize)
         {
             double left = 0;

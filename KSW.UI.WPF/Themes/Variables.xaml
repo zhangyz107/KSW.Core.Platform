@@ -18,4 +18,6 @@
     <CornerRadius x:Key="KSW.Border.Radius.Medium">6</CornerRadius>
     <CornerRadius x:Key="KSW.Border.Radius.Large">12</CornerRadius>
     <CornerRadius x:Key="KSW.Border.Radius.Full">9999</CornerRadius>
+
+    <Thickness x:Key="KSW.Anchor.Indent">8,4,0,4</Thickness>
 </ResourceDictionary>

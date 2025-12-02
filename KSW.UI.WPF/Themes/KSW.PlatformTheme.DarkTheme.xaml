@@ -370,6 +370,8 @@
     <SolidColorBrush x:Key="KSW.Background.Color3" Color="{StaticResource KSW.Background3Color}" />
     <SolidColorBrush x:Key="KSW.Background.Color4" Color="{StaticResource KSW.Background4Color}"></SolidColorBrush>
 
+    <SolidColorBrush x:Key="KSW.Border.Color" Opacity="0.08" Color="{StaticResource KSW.WhiteColor}"></SolidColorBrush>
+
     <SolidColorBrush x:Key="KSW.Active.Color" Color="{StaticResource KSW.Blue7Color}" />
     <SolidColorBrush x:Key="KSW.Disabled.Color" Color="{StaticResource KSW.Blue2Color}" />
 

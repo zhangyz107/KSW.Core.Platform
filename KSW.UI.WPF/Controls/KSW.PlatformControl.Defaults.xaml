@@ -6,5 +6,6 @@
         <ResourceDictionary Source="/KSW.UI.WPF;component/Controls/PathIcon/PathIcon.xaml"></ResourceDictionary>
         <ResourceDictionary Source="/KSW.UI.WPF;component/Controls/Buttons/Button.xaml"></ResourceDictionary>
         <ResourceDictionary Source="/KSW.UI.WPF;component/Controls/TagInput/TagInput.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/KSW.UI.WPF;component/Controls/Anchor/Anchor.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
