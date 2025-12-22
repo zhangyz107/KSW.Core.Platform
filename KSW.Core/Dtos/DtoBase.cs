@@ -31,6 +31,7 @@ namespace KSW.Dtos
         /// <summary>
         /// 标识
         /// </summary>
+        [JsonIgnore]
         public string Id { get; set; }
 
         public virtual string this[string columnName]
@@ -188,6 +189,7 @@ namespace KSW.Dtos
             }
         }
 
+        [JsonIgnore]
         public virtual string Error => string.Join("\n",
             from validationResult in Validate()
             select validationResult.ErrorMessage);

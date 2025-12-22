@@ -17,6 +17,9 @@
             <Setter Property="Width" Value="80"></Setter>
             <Setter Property="Height" Value="80"></Setter>
             <Setter Property="Focusable" Value="False"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Background" Value="{Binding DataContext.KeyboardBackground,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"></Setter>
+            <Setter Property="Foreground" Value="{Binding DataContext.Foreground,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"></Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -27,6 +30,7 @@
                             <ContentPresenter 
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
+                                TextElement.Foreground="{TemplateBinding Foreground}"
                                 Content="{TemplateBinding Content}"></ContentPresenter>
                         </Border>
                     </ControlTemplate>
@@ -35,7 +39,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Border Background="{DynamicResource KSW.Border.Background}">
+    <Border Background="{Binding Background}">
         <Grid Margin="4,8,4,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="36"></RowDefinition>
@@ -44,7 +48,7 @@
             </Grid.RowDefinitions>
             <TextBlock 
                 Text="{Binding Title}" 
-                Foreground="{DynamicResource KSW.Brush.Foreground}"
+                Foreground="{Binding Foreground}"
                 TextAlignment="Center"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
@@ -55,10 +59,13 @@
                      Height="70"
                      BorderThickness="1"
                      Margin="0,8"
+                     Padding="4"
                      HorizontalContentAlignment="Right"
                      VerticalContentAlignment="Bottom"
                      Focusable="False"
                      FontSize="20"
+                     Foreground="{Binding TextForeground}"
+                     BorderBrush="{Binding TextBorderBrush}"
                      Text="{Binding DisplayValue,UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
             <Grid Grid.Row="2" Height="420">
@@ -78,7 +85,7 @@
                     <Button Margin="0,0,0,4" Command="{Binding ClickComamd}" CommandParameter="0" Content="0" Style="{StaticResource KeyboardButtonStyle}"></Button>
                     <Button Content="Esc" Style="{StaticResource KeyboardButtonStyle}" Command="{Binding CancelCommand}" Focusable="False"></Button>
                 </WrapPanel>
-                
+
                 <WrapPanel Grid.Column="2" Orientation="Vertical" Grid.RowSpan="2">
                     <Button Margin="0,0,0,4" Content="8" Style="{StaticResource KeyboardButtonStyle}" Command="{Binding ClickComamd}" CommandParameter="8"></Button>
                     <Button Margin="0,0,0,4" Content="5" Style="{StaticResource KeyboardButtonStyle}" Command="{Binding ClickComamd}" CommandParameter="5"></Button>

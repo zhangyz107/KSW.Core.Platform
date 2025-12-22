@@ -164,6 +164,49 @@ namespace KSW.UI.WPF.Controls
             DependencyProperty.Register("Step", typeof(double), typeof(NumericSoftKeyboard), new PropertyMetadata(0.0));
 
         /// <summary>
+        /// 文本框边框颜色
+        /// </summary>
+        public SolidColorBrush TextBorderBrush
+        {
+            get { return (SolidColorBrush)GetValue(TextBorderBrushProperty); }
+            set { SetValue(TextBorderBrushProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TextBorderBrush.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextBorderBrushProperty =
+            DependencyProperty.Register("TextBorderBrush", typeof(SolidColorBrush), typeof(NumericSoftKeyboard),new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#626973"))));
+
+        /// <summary>
+        /// 文本颜色
+        /// </summary>
+        public SolidColorBrush TextForeground
+        {
+            get { return (SolidColorBrush)GetValue(TextForegroundProperty); }
+            set { SetValue(TextForegroundProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TextForeground.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextForegroundProperty =
+            DependencyProperty.Register("TextForeground", typeof(SolidColorBrush), typeof(NumericSoftKeyboard), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4ac2e4"))));
+
+
+        /// <summary>
+        /// 键盘背景色
+        /// </summary>
+        public SolidColorBrush KeyboardBackground
+        {
+            get { return (SolidColorBrush)GetValue(KeyboardBackgroundProperty); }
+            set { SetValue(KeyboardBackgroundProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for KeyboardBackground.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty KeyboardBackgroundProperty =
+            DependencyProperty.Register("KeyboardBackground", typeof(SolidColorBrush), typeof(NumericSoftKeyboard), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#21282f"))));
+
+
+
+
+        /// <summary>
         /// 显示值
         /// </summary>
         public string DisplayValue
@@ -224,7 +267,7 @@ namespace KSW.UI.WPF.Controls
         {
             if (d is NumericSoftKeyboard keyboard)
             {
-                keyboard.DisplayValue = e.NewValue.ToString();
+                keyboard.DisplayValue = e.NewValue?.ToString();
             }
         }
 
