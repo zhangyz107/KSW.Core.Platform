@@ -31,7 +31,8 @@ namespace KSW.Localization
                 Path = new PropertyPath($"[{_name}]"),
                 Source = LanguageSource,
                 Converter = Converter,
-                ConverterParameter = ConverterParameter
+                ConverterParameter = ConverterParameter,
+                Mode = BindingMode.OneWay
             };
 
             // 解析当前的提供者

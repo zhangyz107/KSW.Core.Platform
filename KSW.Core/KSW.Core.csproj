@@ -15,6 +15,10 @@
     <Page Remove="Compare\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Language\LanguageManager.cs" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<Compile Update="Properties\R.Designer.cs">
 			<DesignTime>True</DesignTime>

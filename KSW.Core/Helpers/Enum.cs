@@ -177,4 +177,17 @@ public static class Enum {
             e => GetDescription(typeof(TEnum), e)
         );
     }
+
+    /// <summary>
+    /// 判断枚举值是否相等
+    /// </summary>
+    /// <typeparam name="T1"></typeparam>
+    /// <typeparam name="T2"></typeparam>
+    /// <param name="enum1"></param>
+    /// <param name="enum2"></param>
+    /// <returns></returns>
+    public static bool AreEnumValuesEqual<T1,T2>(T1 enum1, T2 enum2) where T1: System.Enum where T2: System.Enum
+    {
+        return System.Convert.ToInt32(enum1) == System.Convert.ToInt32(enum2);
+    }
 }

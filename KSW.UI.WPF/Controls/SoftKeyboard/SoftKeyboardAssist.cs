@@ -1,11 +1,7 @@
 ﻿using KSW.Helpers;
 using KSW.UI.WPF.Enums;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -19,22 +15,28 @@ namespace KSW.UI.WPF.Controls
     public static class SoftKeyboardAssist
     {
         /// <summary>
-        /// 是否使用软键盘
+        /// 是否浮动窗弹出
         /// </summary>
-        public static readonly DependencyProperty UseNumericSoftKeyboardProperty = DependencyProperty.RegisterAttached(
-            "UseNumericSoftKeyboard",
+        public static readonly DependencyProperty IsPopupOpenProperty = DependencyProperty.RegisterAttached(
+            "IsPopupOpen",
             typeof(bool),
             typeof(SoftKeyboardAssist),
-            new PropertyMetadata(false, OnUseNumericSoftKeyboardChanged));
+            new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsPopupOpenChanged));
 
-        public static bool GetUseSoftKeyboard(DependencyObject obj)
-        {
-            return (bool)obj.GetValue(UseNumericSoftKeyboardProperty);
-        }
+        public static bool GetIsPopupOpen(DependencyObject obj) => (bool)obj.GetValue(IsPopupOpenProperty);
+        public static void SetIsPopupOpen(DependencyObject obj, bool value) => obj.SetValue(IsPopupOpenProperty, value);
 
-        public static void SetUseSoftKeyboard(DependencyObject obj, bool value)
+        private static void OnIsPopupOpenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            obj.SetValue(UseNumericSoftKeyboardProperty, value);
+            if (d is Control control)
+            {
+                var popup = GetPopupProperty(control);
+
+                if (popup == null)
+                    popup = CreatePopup(control);
+
+                popup.IsOpen = (bool)e.NewValue;
+            }
         }
 
         /// <summary>
@@ -128,7 +130,7 @@ namespace KSW.UI.WPF.Controls
             "Background",
             typeof(SolidColorBrush),
             typeof(SoftKeyboardAssist),
-            new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0x13,0x15,0x1b)), OnBackgroundChanged));
+            new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0x13, 0x15, 0x1b)), OnBackgroundChanged));
 
         public static SolidColorBrush GetBackground(DependencyObject obj) => (SolidColorBrush)obj.GetValue(BackgroundProperty);
         public static void SetBackground(DependencyObject obj, SolidColorBrush value) => obj.SetValue(BackgroundProperty, value);
@@ -136,11 +138,11 @@ namespace KSW.UI.WPF.Controls
         /// <summary>
         /// 键盘文字颜色
         /// </summary>
-        public static readonly DependencyProperty ForegroundProperty= DependencyProperty.RegisterAttached(
+        public static readonly DependencyProperty ForegroundProperty = DependencyProperty.RegisterAttached(
             "Foreground",
             typeof(SolidColorBrush),
             typeof(SoftKeyboardAssist),
-            new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0xff,0xff,0xff)), OnForegroundChanged));
+            new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0xff, 0xff, 0xff)), OnForegroundChanged));
 
         public static SolidColorBrush GetForeground(DependencyObject obj) => (SolidColorBrush)obj.GetValue(ForegroundProperty);
         public static void SetForeground(DependencyObject obj, SolidColorBrush value) => obj.SetValue(ForegroundProperty, value);
@@ -148,11 +150,11 @@ namespace KSW.UI.WPF.Controls
         /// <summary>
         /// 文本框边框颜色
         /// </summary>
-        public static readonly DependencyProperty TextBorderBrushProperty= DependencyProperty.RegisterAttached(
+        public static readonly DependencyProperty TextBorderBrushProperty = DependencyProperty.RegisterAttached(
             "TextBorderBrush",
             typeof(SolidColorBrush),
             typeof(SoftKeyboardAssist),
-            new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0x62,0x69,0x73)), OnTextBorderBrushChanged));
+            new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0x62, 0x69, 0x73)), OnTextBorderBrushChanged));
 
         public static SolidColorBrush GetTextBorderBrush(DependencyObject obj) => (SolidColorBrush)obj.GetValue(TextBorderBrushProperty);
         public static void SetTextBorderBrush(DependencyObject obj, SolidColorBrush value) => obj.SetValue(TextBorderBrushProperty, value);
@@ -160,11 +162,11 @@ namespace KSW.UI.WPF.Controls
         /// <summary>
         /// 文本框文字颜色
         /// </summary>
-        public static readonly DependencyProperty TextForegroundProperty= DependencyProperty.RegisterAttached(
+        public static readonly DependencyProperty TextForegroundProperty = DependencyProperty.RegisterAttached(
             "TextForeground",
             typeof(SolidColorBrush),
             typeof(SoftKeyboardAssist),
-            new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0x4A,0xc2,0xe4)), OnTextForegroundChanged));
+            new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0x4A, 0xc2, 0xe4)), OnTextForegroundChanged));
 
         public static SolidColorBrush GetTextForeground(DependencyObject obj) => (SolidColorBrush)obj.GetValue(TextForegroundProperty);
         public static void SetTextForeground(DependencyObject obj, SolidColorBrush value) => obj.SetValue(TextForegroundProperty, value);
@@ -172,11 +174,11 @@ namespace KSW.UI.WPF.Controls
         /// <summary>
         /// 键盘按钮背景色
         /// </summary>
-        public static readonly DependencyProperty KeyboardBackgroundProperty= DependencyProperty.RegisterAttached(
+        public static readonly DependencyProperty KeyboardBackgroundProperty = DependencyProperty.RegisterAttached(
             "KeyboardBackground",
             typeof(SolidColorBrush),
             typeof(SoftKeyboardAssist),
-            new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0x21,0x28,0x2f)), OnKeyboardBackgroundChanged));
+            new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0x21, 0x28, 0x2f)), OnKeyboardBackgroundChanged));
 
         public static SolidColorBrush GetKeyboardBackground(DependencyObject obj) => (SolidColorBrush)obj.GetValue(KeyboardBackgroundProperty);
         public static void SetKeyboardBackground(DependencyObject obj, SolidColorBrush value) => obj.SetValue(KeyboardBackgroundProperty, value);
@@ -188,7 +190,6 @@ namespace KSW.UI.WPF.Controls
             new PropertyMetadata(null));
 
         private static Popup GetPopupProperty(DependencyObject obj) => (Popup)obj.GetValue(PopupProperty);
-
         private static void SetPopupProperty(DependencyObject obj, Popup value) => obj.SetValue(PopupProperty, value);
 
         private static readonly DependencyProperty KeyboardProperty = DependencyProperty.RegisterAttached(
@@ -201,41 +202,26 @@ namespace KSW.UI.WPF.Controls
 
         private static void SetKeyboardProperty(DependencyObject obj, NumericSoftKeyboard value) => obj.SetValue(KeyboardProperty, value);
 
-        private static readonly DependencyProperty JitterProperty = DependencyProperty.RegisterAttached(
-    "Jitter",
-    typeof(DebounceHelper),
-    typeof(SoftKeyboardAssist),
-    new PropertyMetadata(null));
-
-        private static DebounceHelper GetJitterProperty(DependencyObject obj) => (DebounceHelper)obj.GetValue(JitterProperty);
-
-        private static void SetJitterProperty(DependencyObject obj, DebounceHelper value) => obj.SetValue(JitterProperty, value);
-
-        private static void OnUseNumericSoftKeyboardChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static Popup CreatePopup(Control control)
         {
-            if (d is Control control && e.NewValue is bool useSoftKeyboard)
-            {
-                if (useSoftKeyboard)
-                {
-                    AttachSoftKeyboard(control);
-                }
-                else
-                {
-                    DetachSoftKeyboard(control);
-                }
-            }
-        }
-
-        private static void AttachSoftKeyboard(Control control)
-        {
+            var window = Application.Current.MainWindow;
             var popup = new Popup()
             {
                 AllowsTransparency = true,
                 Placement = PlacementMode.Relative,
                 StaysOpen = false,
+                PlacementTarget = window,
+                PlacementRectangle = new Rect(window.ActualWidth - 360, 120, 0, 0),
                 PopupAnimation = PopupAnimation.Slide,
             };
-
+            var popupBinding = new Binding()
+            {
+                Source = control,
+                Path = new PropertyPath(IsPopupOpenProperty),
+                Mode = BindingMode.TwoWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+            popup.Closed += (sender, args) => SetIsPopupOpen(control, false);
             var keyboard = new NumericSoftKeyboard();
             keyboard.Mode = GetMode(control);
             keyboard.Background = GetBackground(control);
@@ -254,13 +240,9 @@ namespace KSW.UI.WPF.Controls
 
             //绑定到控件
             SetPopupProperty(control, popup);
-            control.PreviewMouseLeftButtonDown += Control_PreviewMouseUp;
             SetKeyboardProperty(control, keyboard);
 
-            // 防抖处理
-            var jitter = new DebounceHelper(TimeSpan.FromMilliseconds(300));
-            SetJitterProperty(control, jitter);
-
+            return popup;
         }
 
         private static string GetValuePropertyPath(Control control)
@@ -276,89 +258,14 @@ namespace KSW.UI.WPF.Controls
             };
         }
 
-        private static void DetachSoftKeyboard(Control control)
-        {
-            control.PreviewMouseUp -= Control_PreviewMouseUp;
-
-            var popup = GetPopupProperty(control);
-            if (popup != null)
-            {
-                popup.Child = null;
-                popup.IsOpen = false;
-                SetPopupProperty(control, null);
-            }
-        }
-
-        private static void Control_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (sender is Control control && GetUseSoftKeyboard(control))
-            {
-                var popup = GetPopupProperty(control);
-                if (popup != null)
-                {
-                    popup.PlacementTarget = control;
-                    // 延迟关闭，避免立即关闭导致无法点击键盘
-                    Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() =>
-                    {
-                        popup.IsOpen = true;
-                        popup.Focus();
-
-                    }), System.Windows.Threading.DispatcherPriority.Background);
-                }
-            }
-        }
-
-        private static void Control_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (sender is Control control && GetUseSoftKeyboard(control))
-            {
-                var popup = GetPopupProperty(control);
-                if (popup != null)
-                {
-                    // 延迟关闭，避免立即关闭导致无法点击键盘
-                    Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() =>
-                    {
-                        if (!control.IsFocused)
-                        {
-                            popup.IsOpen = false;
-                        }
-                    }), System.Windows.Threading.DispatcherPriority.Background);
-                }
-            }
-        }
-
-        private static void Control_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            // 通过鼠标点击触发键盘显示（用于TextBox等控件）
-            if (sender is Control control && GetUseSoftKeyboard(control))
-            {
-                var jitter = GetJitterProperty(control);
-                if (jitter == null || !jitter.CanProceed())
-                    return;
-
-                var popup = GetPopupProperty(control);
-                if (popup != null)
-                {
-                    var window = Application.Current.MainWindow;
-                    popup.PlacementTarget = window;
-                    popup.PlacementRectangle = new Rect(window.ActualWidth - 360, 120, 0, 0);
-                    Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() =>
-                    {
-                        popup.IsOpen = true;
-                        popup.Focus();
-
-                    }), System.Windows.Threading.DispatcherPriority.Background);
-                }
-            }
-
-            e.Handled = true;
-        }
-
-
         private static void OnModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control control && GetUseSoftKeyboard(control))
+            if (d is Control control)
             {
+                var popup = GetPopupProperty(control);
+                if (popup == null)
+                    popup = CreatePopup(control);
+
                 var _keyboard = GetKeyboardProperty(control);
                 if (_keyboard != null)
                 {
@@ -369,8 +276,12 @@ namespace KSW.UI.WPF.Controls
 
         private static void OnTitleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control control && GetUseSoftKeyboard(control))
+            if (d is Control control)
             {
+                var popup = GetPopupProperty(control);
+                if (popup == null)
+                    popup = CreatePopup(control);
+
                 var _keyboard = GetKeyboardProperty(control);
                 if (_keyboard != null)
                 {
@@ -381,8 +292,12 @@ namespace KSW.UI.WPF.Controls
 
         private static void OnUpKeyCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control control && GetUseSoftKeyboard(control))
+            if (d is Control control)
             {
+                var popup = GetPopupProperty(control);
+                if (popup == null)
+                    popup = CreatePopup(control);
+
                 var _keyboard = GetKeyboardProperty(control);
                 if (_keyboard != null)
                 {
@@ -393,8 +308,12 @@ namespace KSW.UI.WPF.Controls
 
         private static void OnDownKeyCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control control && GetUseSoftKeyboard(control))
+            if (d is Control control)
             {
+                var popup = GetPopupProperty(control);
+                if (popup == null)
+                    popup = CreatePopup(control);
+
                 var _keyboard = GetKeyboardProperty(control);
                 if (_keyboard != null)
                 {
@@ -405,8 +324,12 @@ namespace KSW.UI.WPF.Controls
 
         private static void OnUnitsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control control && GetUseSoftKeyboard(control))
+            if (d is Control control)
             {
+                var popup = GetPopupProperty(control);
+                if (popup == null)
+                    popup = CreatePopup(control);
+
                 var _keyboard = GetKeyboardProperty(control);
                 if (_keyboard != null)
                 {
@@ -417,8 +340,12 @@ namespace KSW.UI.WPF.Controls
 
         private static void OnStepChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control control && GetUseSoftKeyboard(control))
+            if (d is Control control)
             {
+                var popup = GetPopupProperty(control);
+                if (popup == null)
+                    popup = CreatePopup(control);
+
                 var _keyboard = GetKeyboardProperty(control);
                 if (_keyboard != null)
                 {
@@ -430,7 +357,9 @@ namespace KSW.UI.WPF.Controls
 
         private static void OnDisplayValuePathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control control && GetUseSoftKeyboard(control))
+            var popup = GetPopupProperty(d);
+
+            if (d is Control control && popup != null)
             {
                 var _keyboard = GetKeyboardProperty(control);
                 if (_keyboard != null)
@@ -449,8 +378,12 @@ namespace KSW.UI.WPF.Controls
 
         private static void OnBackgroundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control control && GetUseSoftKeyboard(control))
+            if (d is Control control)
             {
+                var popup = GetPopupProperty(control);
+                if (popup == null)
+                    popup = CreatePopup(control);
+
                 var _keyboard = GetKeyboardProperty(control);
                 if (_keyboard != null)
                 {
@@ -462,8 +395,12 @@ namespace KSW.UI.WPF.Controls
 
         private static void OnForegroundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control control && GetUseSoftKeyboard(control))
+            if (d is Control control)
             {
+                var popup = GetPopupProperty(control);
+                if (popup == null)
+                    popup = CreatePopup(control);
+
                 var _keyboard = GetKeyboardProperty(control);
                 if (_keyboard != null)
                 {
@@ -475,8 +412,12 @@ namespace KSW.UI.WPF.Controls
 
         private static void OnTextBorderBrushChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control control && GetUseSoftKeyboard(control))
+            if (d is Control control)
             {
+                var popup = GetPopupProperty(control);
+                if (popup == null)
+                    popup = CreatePopup(control);
+
                 var _keyboard = GetKeyboardProperty(control);
                 if (_keyboard != null)
                 {
@@ -487,8 +428,12 @@ namespace KSW.UI.WPF.Controls
 
         private static void OnTextForegroundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control control && GetUseSoftKeyboard(control))
+            if (d is Control control)
             {
+                var popup = GetPopupProperty(control);
+                if (popup == null)
+                    popup = CreatePopup(control);
+
                 var _keyboard = GetKeyboardProperty(control);
                 if (_keyboard != null)
                 {
@@ -499,8 +444,12 @@ namespace KSW.UI.WPF.Controls
 
         private static void OnKeyboardBackgroundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Control control && GetUseSoftKeyboard(control))
+            if (d is Control control)
             {
+                var popup = GetPopupProperty(control);
+                if (popup == null)
+                    popup = CreatePopup(control);
+
                 var _keyboard = GetKeyboardProperty(control);
                 if (_keyboard != null)
                 {

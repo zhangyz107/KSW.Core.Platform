@@ -21,11 +21,11 @@ namespace KSW.Dtos
         private readonly List<PropertyChangedEventListener> propertyChangedListeners = new List<PropertyChangedEventListener>();
         [NonSerialized]
         private readonly List<CollectionChangedEventListener> collectionChangedListeners = new List<CollectionChangedEventListener>();
-        private readonly LanguageManager L;
+        private readonly ILanguageManager L;
 
         protected DtoBase()
         {
-            L = LanguageManager.Instance;
+            L = LanguageHelper.Manager;
         }
 
         /// <summary>

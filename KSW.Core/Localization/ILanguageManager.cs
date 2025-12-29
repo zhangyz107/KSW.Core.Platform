@@ -19,5 +19,10 @@ namespace KSW.Localization
         /// 切换多语言
         /// </summary>
         void ChangeLanguage(CultureInfo cultureInfo);
+
+        /// <summary>
+        /// 强制刷新多语言
+        /// </summary>
+        void RefreshLanguage();
     }
 }

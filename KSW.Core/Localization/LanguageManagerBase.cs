@@ -10,15 +10,20 @@ namespace KSW.Localization
     public class LanguageManagerBase : ILanguageManager
     {
         private readonly ResourceManager _resourceManager;
-
+        private static CultureInfo _currentCultureInfo;
         #region Properties
         public event PropertyChangedEventHandler? PropertyChanged;
         #endregion
 
-        public LanguageManagerBase(string resourceName, Assembly assembly)
+        public LanguageManagerBase(string resourceName, Assembly assembly = null)
         {
+            if (assembly == null)
+            {
+                assembly = Assembly.GetCallingAssembly();
+            }
+            //assembly ?? = Assembly.GetAssembly(GetType());
             _resourceManager = new ResourceManager(resourceName, assembly);
-            CultureManager.CurrentCultureChanged += CultureManager_CurrentCultureChanged;
+            //CultureManager.CurrentCultureChanged += CultureManager_CurrentCultureChanged;
         }
 
         public string this[string name]
@@ -27,7 +32,9 @@ namespace KSW.Localization
             {
                 if (name == null)
                     throw new NotImplementedException();
-                return _resourceManager.GetString(name);
+                var cultureInfo = _currentCultureInfo ?? CultureManager.CurrentCulture;
+                var result = _resourceManager.GetString(name, cultureInfo);
+                return result;
             }
         }
 
@@ -37,10 +44,16 @@ namespace KSW.Localization
         /// <param name="cultureInfo"></param>
         public void ChangeLanguage(CultureInfo cultureInfo)
         {
-            CultureManager.CurrentCulture = cultureInfo;
+            _currentCultureInfo=  cultureInfo;
+            RefreshLanguage();
         }
 
         private void CultureManager_CurrentCultureChanged(object? sender, CultureInfo e)
+        {
+            RefreshLanguage();
+        }
+
+        public void RefreshLanguage()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("item[]"));
         }
