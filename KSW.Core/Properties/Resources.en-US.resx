@@ -141,4 +141,7 @@
   <data name="CannotBeLessThanCharacters" xml:space="preserve">
     <value>Cannot be less than {0} characters.</value>
   </data>
+  <data name="TheFieldRequired" xml:space="preserve">
+    <value>The {0} Field Is Required</value>
+  </data>
 </root>

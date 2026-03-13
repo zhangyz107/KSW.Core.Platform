@@ -121,4 +121,7 @@
   <data name="CannotBeLessThanCharacters" xml:space="preserve">
     <value></value>
   </data>
+  <data name="TheFieldRequired" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

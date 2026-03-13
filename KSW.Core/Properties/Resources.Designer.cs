@@ -131,5 +131,14 @@ namespace KSW.Properties {
                 return ResourceManager.GetString("MustBeBetween", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string TheFieldRequired {
+            get {
+                return ResourceManager.GetString("TheFieldRequired", resourceCulture);
+            }
+        }
     }
 }

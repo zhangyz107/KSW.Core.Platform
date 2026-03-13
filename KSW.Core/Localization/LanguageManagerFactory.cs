@@ -42,5 +42,14 @@ namespace KSW.Localization
                 return null;
             }
         }
+
+        public static void ChangeLanguage(CultureInfo cultureInfo)
+        {
+            foreach (var managerKeyValue in _languageManagerStore)
+            {
+                var manager = managerKeyValue.Value;
+                manager?.ChangeLanguage(cultureInfo);
+            }
+        }
     }
 }

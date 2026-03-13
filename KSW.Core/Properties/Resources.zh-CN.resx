@@ -141,4 +141,7 @@
   <data name="CannotBeLessThanCharacters" xml:space="preserve">
     <value>不能少于{0}个字符。</value>
   </data>
+  <data name="TheFieldRequired" xml:space="preserve">
+    <value>字段 {0} 必填</value>
+  </data>
 </root>

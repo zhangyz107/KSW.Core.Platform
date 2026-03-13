@@ -49,7 +49,7 @@ namespace KSW.Dtos
                 {
                     var maximun = pi.GetCustomAttribute<MaxLengthAttribute>().Length;
                     if (value is string stringValue && stringValue.Length > maximun)
-                        return pi.GetCustomAttribute<MaxLengthAttribute>().ErrorMessage ?? string.Format(L["CannotExceedCharacters"],  maximun);
+                        return pi.GetCustomAttribute<MaxLengthAttribute>().ErrorMessage ?? string.Format(L["CannotExceedCharacters"], maximun);
                 }
                 else if (pi.IsDefined(typeof(MinLengthAttribute), true))
                 {
@@ -192,7 +192,7 @@ namespace KSW.Dtos
         [JsonIgnore]
         public virtual string Error => string.Join("\n",
             from validationResult in Validate()
-            select validationResult.ErrorMessage);
+            select string.Format(L[$"{validationResult?.ErrorMessage}"], validationResult?.MemberNames?.IsEmpty() == true ? "" : validationResult.MemberNames.ToArray()));
 
         public virtual IEnumerable<ValidationResult> Validate()
         {
