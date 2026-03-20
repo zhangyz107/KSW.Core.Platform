@@ -15,8 +15,10 @@ namespace KSW.Dtos
     /// Abstract base class for a DataModel implementation.
     /// </summary>
     [Serializable]
-    public abstract class DtoBase : BindableBase, IDataKey, IDataErrorInfo
+    public abstract class DtoBase : BindableBase, IDataKey, IDataErrorInfo,IDisposable
     {
+        private bool _disposed;
+
         [NonSerialized]
         private readonly List<PropertyChangedEventListener> propertyChangedListeners = new List<PropertyChangedEventListener>();
         [NonSerialized]
@@ -43,7 +45,7 @@ namespace KSW.Dtos
                 if (pi.IsDefined(typeof(RequiredAttribute), true))
                 {
                     if (value == null || string.IsNullOrEmpty(value.ToString()))
-                        return pi?.GetCustomAttribute<RequiredAttribute>().ErrorMessage ?? string.Format(L["CanNotBeEmpty"]);
+                        return string.Format(L["CanNotBeEmpty"]);
                 }
                 else if (pi.IsDefined(typeof(MaxLengthAttribute), true))
                 {
@@ -190,9 +192,29 @@ namespace KSW.Dtos
         }
 
         [JsonIgnore]
-        public virtual string Error => string.Join("\n",
-            from validationResult in Validate()
-            select string.Format(L[$"{validationResult?.ErrorMessage}"], validationResult?.MemberNames?.IsEmpty() == true ? "" : validationResult.MemberNames.ToArray()));
+        public virtual string Error
+        {
+            get
+            {
+                var stringBuilder = new StringBuilder();
+                var results = Validate();
+                if (results.IsEmpty())
+                    return string.Empty;
+
+                foreach (var validationResult in Validate())
+                {
+                    var local = L[$"{validationResult.ErrorMessage}"];
+
+                    var memberNames = validationResult?.MemberNames?.IsEmpty() == true  ? new object[] { ""} : validationResult?.MemberNames.Cast<object>().ToArray();
+                    if (local.IsEmpty())
+                        stringBuilder.AppendLine(validationResult?.ErrorMessage);
+                    else
+                        stringBuilder.AppendLine(string.Format(local, memberNames));
+                }
+
+                return stringBuilder.ToString();
+            }
+        }
 
         public virtual IEnumerable<ValidationResult> Validate()
         {
@@ -200,6 +222,91 @@ namespace KSW.Dtos
             var validationResults = new List<ValidationResult>();
             Validator.TryValidateObject(this, validationContext, validationResults, true);
             return validationResults;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (_disposed) return;
+
+            if (disposing)
+            {
+                // 释放托管资源
+                // 例如：取消事件订阅、关闭文件流等
+                RemoveAllWeakEventListeners();
+            }
+
+            // 释放非托管资源
+            _disposed = true;
+        }
+
+        private void RemoveAllWeakEventListeners()
+        {
+            // 移除所有 PropertyChanged 监听器
+            foreach (var listener in propertyChangedListeners.ToList())
+            {
+                if (listener?.Source is INotifyPropertyChanged source)
+                {
+                    PropertyChangedEventManager.RemoveListener(source, listener, "");
+                }
+            }
+            propertyChangedListeners.Clear();
+
+            // 移除所有 CollectionChanged 监听器
+            foreach (var listener in collectionChangedListeners.ToList())
+            {
+                if (listener?.Source is INotifyCollectionChanged source)
+                {
+                    CollectionChangedEventManager.RemoveListener(source, listener);
+                }
+            }
+            collectionChangedListeners.Clear();
+        }
+
+        /// <summary>
+        /// 提供一种方式让派生类可以主动移除特定的监听器
+        /// </summary>
+        protected void RemoveAllListenersForSource(object source)
+        {
+            if (source == null) return;
+
+            // 移除 PropertyChanged 监听器
+            var propertyListeners = propertyChangedListeners
+                .Where(l => l.Source == source)
+                .ToList();
+
+            foreach (var listener in propertyListeners)
+            {
+                if (source is INotifyPropertyChanged propertySource)
+                {
+                    propertyChangedListeners.Remove(listener);
+                    PropertyChangedEventManager.RemoveListener(propertySource, listener, "");
+                }
+            }
+
+            // 移除 CollectionChanged 监听器
+            var collectionListeners = collectionChangedListeners
+                .Where(l => l.Source == source)
+                .ToList();
+
+            foreach (var listener in collectionListeners)
+            {
+                if (source is INotifyCollectionChanged collectionSource)
+                {
+                    collectionChangedListeners.Remove(listener);
+                    CollectionChangedEventManager.RemoveListener(collectionSource, listener);
+                }
+            }
+        }
+
+        ~DtoBase()
+        {
+            Dispose(false);
         }
     }
 }
