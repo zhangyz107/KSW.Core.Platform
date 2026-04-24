@@ -6,6 +6,7 @@ using Prism.Mvvm;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using System.Reflection;
 using System.Xml.Serialization;
 
@@ -201,7 +202,7 @@ namespace KSW.Dtos
                 if (results.IsEmpty())
                     return string.Empty;
 
-                foreach (var validationResult in Validate())
+                foreach (var validationResult in results)
                 {
                     var local = L[$"{validationResult.ErrorMessage}"];
 
