@@ -76,7 +76,7 @@ namespace KSW.Application
         /// <summary>
         /// 创建实体
         /// </summary>
-        public virtual async Task CreateAsync(TEntity entity)
+        public virtual async Task<string> CreateAsync(TEntity entity)
         {
             await CreateBeforeAsync(entity);
             entity.Init();
@@ -84,6 +84,7 @@ namespace KSW.Application
             await CreateAfterAsync(entity);
             await CommitAsync();
             await CreateCommitAfterAsync(entity);
+            return entity.Id.SafeString();
         }
 
         /// <summary>
