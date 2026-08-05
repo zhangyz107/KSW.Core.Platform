@@ -87,7 +87,18 @@ public class DependencyServiceRegistrar : IServiceRegistrar
                 result.Add(group.First());
                 continue;
             }
-            result.Add(GetTypesByPriority(group));
+            else
+            {
+                var isMultiple = GetMultiple(group.Key);
+                if (isMultiple)
+                {
+                    var list = group.Select(x => (x.Item1, x.Item2));
+                    result.AddRange(list);
+                }
+                else
+                    result.Add(GetTypesByPriority(group));
+            }
+
         }
         return result;
     }
@@ -123,53 +134,64 @@ public class DependencyServiceRegistrar : IServiceRegistrar
     }
 
     /// <summary>
+    /// 是否支持多个实现类
+    /// </summary>
+    /// <param name="group"></param>
+    /// <returns></returns>
+    private bool GetMultiple(Type type)
+    {
+        var attribute = type.GetCustomAttribute<InterfaceMultipleAttribute>();
+        if (attribute == null)
+            return false;
+        return attribute.IsMultiple;
+    }
+
+    /// <summary>
     /// 注册类型
     /// </summary>
     private void RegisterType(IContainerRegistry containerRegistry, Type interfaceType, Type classType, ServiceLifetime lifetime)
     {
+        var className = classType.Name;
         switch (lifetime)
         {
             case ServiceLifetime.Singleton:
-                if (!containerRegistry.IsRegistered(classType))
-                    containerRegistry.RegisterSingleton(classType);
+                if (!containerRegistry.IsRegistered(classType, className))
+                    containerRegistry.Register(classType, className);
 
-                if (!containerRegistry.IsRegistered(interfaceType))
+                if (!containerRegistry.IsRegistered(interfaceType, className))
                     containerRegistry.RegisterSingleton(interfaceType, c =>
                     {
                         var generator = c.Resolve<ProxyGenerator>();
                         var interceptor = c.Resolve<LoggingInterceptor>();
-                        var target = c.Resolve(classType);
+                        var target = c.Resolve(classType, className);
                         return generator.CreateInterfaceProxyWithTarget(interfaceType, target, interceptor);
                     });
-                //containerRegistry.TryRegisterSingleton(interfaceType, classType);
                 break;
             case ServiceLifetime.Scoped:
-                if (!containerRegistry.IsRegistered(classType))
-                    containerRegistry.RegisterScoped(classType);
+                if (!containerRegistry.IsRegistered(classType, className))
+                    containerRegistry.Register(classType, className);
 
-                if (!containerRegistry.IsRegistered(interfaceType))
+                if (!containerRegistry.IsRegistered(interfaceType, className))
                     containerRegistry.RegisterScoped(interfaceType, c =>
                     {
                         var generator = c.Resolve<ProxyGenerator>();
                         var interceptor = c.Resolve<LoggingInterceptor>();
-                        var target = c.Resolve(classType);
+                        var target = c.Resolve(classType, className);
                         return generator.CreateInterfaceProxyWithTarget(interfaceType, target, interceptor);
                     });
-                //containerRegistry.TryRegisterScoped(interfaceType, classType);
                 break;
             case ServiceLifetime.Transient:
-                if (!containerRegistry.IsRegistered(classType))
-                    containerRegistry.Register(classType);
+                if (!containerRegistry.IsRegistered(classType, className))
+                    containerRegistry.Register(classType, className);
 
-                if (!containerRegistry.IsRegistered(interfaceType))
+                if (!containerRegistry.IsRegistered(interfaceType, className))
                     containerRegistry.Register(interfaceType, c =>
                     {
                         var generator = c.Resolve<ProxyGenerator>();
                         var interceptor = c.Resolve<LoggingInterceptor>();
-                        var target = c.Resolve(classType);
+                        var target = c.Resolve(classType, className);
                         return generator.CreateInterfaceProxyWithTarget(interfaceType, target, interceptor);
                     });
-                //containerRegistry.TryRegister(interfaceType, classType);
                 break;
             default:
                 break;
