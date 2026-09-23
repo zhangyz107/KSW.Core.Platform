@@ -39,6 +39,8 @@ public class DependencyServiceRegistrar : IServiceRegistrar
         var containerRegistry = serviceContext.ContainerRegistry;
         containerRegistry.RegisterSingleton<LoggingInterceptor>();
         containerRegistry.RegisterSingleton<ProxyGenerator>();
+        containerRegistry.RegisterSingleton<InMemoryLogSink>();
+
         return () =>
         {
             RegisterDependency<ISingletonDependency>(serviceContext.ContainerRegistry, serviceContext.TypeFinder, ServiceLifetime.Singleton);

@@ -6,5 +6,6 @@
         <ResourceDictionary Source="/KSW.UI.WPF;component/Themes/Variables.xaml"></ResourceDictionary>
         <ResourceDictionary Source="/KSW.UI.WPF;component/Icons/Icon.xaml"></ResourceDictionary>
         <ResourceDictionary Source="/KSW.UI.WPF;component/Controls/KSW.PlatformControl.Defaults.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/KSW.UI.WPF;component/Themes/KSW.PlatformTheme.Font.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

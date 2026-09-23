@@ -5,6 +5,8 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
+		<PackageOutputPath>.\..\..\nuget.push\KSW.UI.WPF</PackageOutputPath>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -15,6 +17,37 @@
 	  <None Remove="Resources\Images\information.png" />
 	  <None Remove="Resources\Images\question.png" />
 	  <None Remove="Resources\Images\warning.png" />
+	  <None Remove="Resources\SourceHanSans\SourceHanSansSC-Bold.otf" />
+	  <None Remove="Resources\SourceHanSans\SourceHanSansSC-ExtraLight.otf" />
+	  <None Remove="Resources\SourceHanSans\SourceHanSansSC-Heavy.otf" />
+	  <None Remove="Resources\SourceHanSans\SourceHanSansSC-Light.otf" />
+	  <None Remove="Resources\SourceHanSans\SourceHanSansSC-Medium.otf" />
+	  <None Remove="Resources\SourceHanSans\SourceHanSansSC-Normal.otf" />
+	  <None Remove="Resources\SourceHanSans\SourceHanSansSC-Regular.otf" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\SourceHanSans\SourceHanSansSC-Bold.otf">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\SourceHanSans\SourceHanSansSC-ExtraLight.otf">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\SourceHanSans\SourceHanSansSC-Heavy.otf">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\SourceHanSans\SourceHanSansSC-Light.otf">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\SourceHanSans\SourceHanSansSC-Medium.otf">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\SourceHanSans\SourceHanSansSC-Normal.otf">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\SourceHanSans\SourceHanSansSC-Regular.otf">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
 	</ItemGroup>
 
 	<ItemGroup>

@@ -4,6 +4,8 @@
 	  <TargetFramework>$(NetTargetFramework)</TargetFramework>
 	  <Nullable>enable</Nullable>
 	  <ImplicitUsings>enable</ImplicitUsings>
+	  <PackageOutputPath>.\..\..\nuget.push\KSW.Migrations</PackageOutputPath>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

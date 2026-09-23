@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
+	  <PackageOutputPath>.\..\..\nuget.push\KSW.ObjectMapping.AutoMapper</PackageOutputPath>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
 	<ItemGroup>

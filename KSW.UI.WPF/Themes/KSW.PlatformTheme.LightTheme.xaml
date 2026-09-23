@@ -371,7 +371,12 @@
     <SolidColorBrush x:Key="KSW.Background.Color3" Color="{StaticResource KSW.Background3Color}" />
     <SolidColorBrush x:Key="KSW.Background.Color4" Color="{StaticResource KSW.Background4Color}" />
 
+    <!--  StatusBar  -->
     <SolidColorBrush x:Key="KSW.Border.Color" Opacity="0.08" Color="{StaticResource KSW.Grey9Color}"></SolidColorBrush>
+    <SolidColorBrush x:Key="KSW.BorderBrush.Color" Opacity="0.5"  Color="{StaticResource KSW.BlackColor}"></SolidColorBrush>
+    
+    <SolidColorBrush x:Key="KSW.StatusBar.Background.Color" Color="White"></SolidColorBrush>
+    <SolidColorBrush x:Key="KSW.StatusBar.BorderBrush.Color" Color="#D6DBE3"></SolidColorBrush>
 
     <SolidColorBrush x:Key="KSW.Active.Color" Color="{StaticResource KSW.Blue7Color}" />
     <SolidColorBrush x:Key="KSW.Disabled.Color" Color="{StaticResource KSW.Blue2Color}" />
@@ -380,11 +385,13 @@
     <SolidColorBrush x:Key="KSW.ClosableTag.Brush.Border" Opacity="0.7" Color="{StaticResource KSW.Grey2Color}"/>
     <SolidColorBrush x:Key="KSW.Combobox.Brush.Border" Opacity="0.7" Color="Transparent"/>
 
-    <SolidColorBrush x:Key="KSW.Brush.Foreground" Color="#1A1A1A"></SolidColorBrush>
+    <!--  Toast  -->
+    <SolidColorBrush x:Key="KSW.Toast.Brush.Foreground" Color="#1A1A1A"></SolidColorBrush>
     <SolidColorBrush x:Key="KSW.Toast.Brush.Information" Color="#0064fa"></SolidColorBrush>
     <SolidColorBrush x:Key="KSW.Toast.Brush.Success" Color="#3bb346"></SolidColorBrush>
     <SolidColorBrush x:Key="KSW.Toast.Brush.Warning" Color="#fc8800"></SolidColorBrush>
     <SolidColorBrush x:Key="KSW.Toast.Brush.Error" Color="#f93920"></SolidColorBrush>
+    <SolidColorBrush x:Key="KSW.Toast.Brush.Fatal" Color="{StaticResource KSW.Red9Color}"></SolidColorBrush>
 
     <SolidColorBrush x:Key="KSW.Toast.Background.Information" Color="#eaf5ff"></SolidColorBrush>
     <SolidColorBrush x:Key="KSW.Toast.Background.Success" Color="#ecf7ec"></SolidColorBrush>

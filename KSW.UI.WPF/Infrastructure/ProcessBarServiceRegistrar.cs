@@ -28,6 +28,7 @@ namespace KSW.UI.WPF.Infrastructure
         {
             context.ContainerRegistry.RegisterDialog<ProcessBarDialog, ProcessBarDialogViewModel>();
             context.ContainerRegistry.RegisterDialog<MessageDialog, MessageDialogViewModel>();
+            context.ContainerRegistry.RegisterDialog<LogViewerDialog, LogViewerDialogViewModel>();
             return null;
         }
     }

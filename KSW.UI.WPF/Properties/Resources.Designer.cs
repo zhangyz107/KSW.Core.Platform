@@ -61,11 +61,74 @@ namespace KSW.UI.WPF.Properties {
         }
         
         /// <summary>
+        ///   查找类似 All 的本地化字符串。
+        /// </summary>
+        internal static string All {
+            get {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Cancel 的本地化字符串。
         /// </summary>
         internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Clear 的本地化字符串。
+        /// </summary>
+        internal static string Clear {
+            get {
+                return ResourceManager.GetString("Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Copy 的本地化字符串。
+        /// </summary>
+        internal static string Copy {
+            get {
+                return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Export 的本地化字符串。
+        /// </summary>
+        internal static string Export {
+            get {
+                return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Exported {0} logs to {1} 的本地化字符串。
+        /// </summary>
+        internal static string InformationExported {
+            get {
+                return ResourceManager.GetString("InformationExported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Choose the folder to export the logs 的本地化字符串。
+        /// </summary>
+        internal static string LogDirSelect {
+            get {
+                return ResourceManager.GetString("LogDirSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Log Viewer 的本地化字符串。
+        /// </summary>
+        internal static string LogViewer {
+            get {
+                return ResourceManager.GetString("LogViewer", resourceCulture);
             }
         }
         
@@ -84,6 +147,33 @@ namespace KSW.UI.WPF.Properties {
         internal static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Search Keyword 的本地化字符串。
+        /// </summary>
+        internal static string SearchKeyword {
+            get {
+                return ResourceManager.GetString("SearchKeyword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} logs in total, showing {1} 的本地化字符串。
+        /// </summary>
+        internal static string StatusInfo {
+            get {
+                return ResourceManager.GetString("StatusInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The task is in progress... 的本地化字符串。
+        /// </summary>
+        internal static string TaskInProgress {
+            get {
+                return ResourceManager.GetString("TaskInProgress", resourceCulture);
             }
         }
         

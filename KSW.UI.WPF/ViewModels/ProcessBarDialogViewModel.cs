@@ -1,4 +1,5 @@
 ﻿using KSW.Data;
+using KSW.UI.WPF.Language;
 
 namespace KSW.UI.WPF.ViewModels
 {
@@ -6,7 +7,7 @@ namespace KSW.UI.WPF.ViewModels
     {
         #region Field
         private bool _isIndeterminate = true;
-        private string _processContent = "任务进行中...";
+        private string _processContent = LanguageHelper.Manager["TaskInProgress"];
         private double _processRate = 0;
         #endregion
 

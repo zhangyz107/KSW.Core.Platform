@@ -12,7 +12,7 @@
     <messageCard:MessageCard.Resources>
         <DataTemplate x:Key="TemplateA" DataType="{x:Type local:Toast}">
             <TextBlock
-                Foreground="{DynamicResource KSW.Brush.Foreground}"
+                Foreground="{DynamicResource KSW.Toast.Brush.Foreground}"
                 FontWeight="SemiBold"
                 VerticalAlignment="Center"
                 Text="{Binding Content}"
@@ -21,7 +21,7 @@
         </DataTemplate>
         <DataTemplate x:Key="TemplateB" DataType="{x:Type sys:String}">
             <TextBlock
-                Foreground="{DynamicResource KSW.Brush.Foreground}"
+                Foreground="{DynamicResource KSW.Toast.Brush.Foreground}"
                 FontWeight="SemiBold"
                 Text="{Binding}"
                 VerticalAlignment="Center"

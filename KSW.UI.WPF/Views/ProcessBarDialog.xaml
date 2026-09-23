@@ -30,7 +30,7 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Margin="0,0,0,10" Grid.Row="1" HorizontalAlignment="Center" Foreground="{DynamicResource KSW.Brush.Foreground}">
+            <TextBlock Margin="0,0,0,10" Grid.Row="1" HorizontalAlignment="Center" Foreground="{DynamicResource KSW.Text.Color0}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>

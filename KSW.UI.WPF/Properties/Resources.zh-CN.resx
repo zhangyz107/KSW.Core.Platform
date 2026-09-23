@@ -132,4 +132,34 @@
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>导出</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="SearchKeyword" xml:space="preserve">
+    <value>搜索关键字</value>
+  </data>
+  <data name="LogDirSelect" xml:space="preserve">
+    <value>选择导出日志的文件夹</value>
+  </data>
+  <data name="TaskInProgress" xml:space="preserve">
+    <value>任务进行中...</value>
+  </data>
+  <data name="LogViewer" xml:space="preserve">
+    <value>日志查看器</value>
+  </data>
+  <data name="InformationExported" xml:space="preserve">
+    <value>已导出 {0} 条日志到 {1}</value>
+  </data>
+  <data name="StatusInfo" xml:space="preserve">
+    <value>共 {0} 条日志，显示 {1} 条</value>
+  </data>
 </root>

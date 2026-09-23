@@ -6,6 +6,8 @@
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>KSW.Data</RootNamespace>
+	  <PackageOutputPath>.\..\..\nuget.push\KSW.Data.Core</PackageOutputPath>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
 	<ItemGroup>

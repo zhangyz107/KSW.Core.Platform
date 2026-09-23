@@ -132,4 +132,34 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="SearchKeyword" xml:space="preserve">
+    <value>Search Keyword</value>
+  </data>
+  <data name="LogDirSelect" xml:space="preserve">
+    <value>Choose the folder to export the logs</value>
+  </data>
+  <data name="TaskInProgress" xml:space="preserve">
+    <value>The task is in progress...</value>
+  </data>
+  <data name="LogViewer" xml:space="preserve">
+    <value>Log Viewer</value>
+  </data>
+  <data name="InformationExported" xml:space="preserve">
+    <value>Exported {0} logs to {1}</value>
+  </data>
+  <data name="StatusInfo" xml:space="preserve">
+    <value>{0} logs in total, showing {1}</value>
+  </data>
 </root>
